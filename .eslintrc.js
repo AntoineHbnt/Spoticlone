@@ -8,6 +8,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
+    "plugin:storybook/recommended",
   ],
   parser: "@typescript-eslint/parser",
   ignorePatterns: [".eslintrc.js"],
@@ -16,8 +17,7 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: "latest",
-    sourceType: "module",
-    //"project": ["./tsconfig.json"]
+    sourceType: "module", //"project": ["./tsconfig.json"]
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
