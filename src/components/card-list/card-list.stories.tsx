@@ -1,4 +1,5 @@
 import { CardList, CardListProps } from './card-list';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   title: 'Components/CardList',

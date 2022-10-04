@@ -7,13 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     AutoImport({
-      imports: [
-        'react',
-        'react-router-dom',
-        {
-          '@storybook/react': ['ComponetnStory', 'ComponentMeta'],
-        },
-      ],
+      imports: ['react', 'react-router-dom'],
       dts: './src/auto-imports.d.ts',
     }),
   ],
