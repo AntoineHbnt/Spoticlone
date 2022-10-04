@@ -6,6 +6,15 @@ import AutoImport from 'unplugin-auto-import/vite';
 export default defineConfig({
   plugins: [
     react(),
-    AutoImport({ imports: ['react', 'react-router-dom'], dts: './src/auto-imports.d.ts' }),
+    AutoImport({
+      imports: [
+        'react',
+        'react-router-dom',
+        {
+          '@storybook/react': ['ComponetnStory', 'ComponentMeta'],
+        },
+      ],
+      dts: './src/auto-imports.d.ts',
+    }),
   ],
 });
