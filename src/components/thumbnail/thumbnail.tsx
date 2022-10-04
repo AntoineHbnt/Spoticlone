@@ -1,7 +1,7 @@
 export interface ThumbnailProps {
   src: string;
   alt: string;
-  className: string;
+  className?: string;
 }
 
 export const Thumbnail = (props: ThumbnailProps) => {
