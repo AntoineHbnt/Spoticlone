@@ -15,8 +15,9 @@ export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
 }
 
 export interface IconProps extends ComponentPropsWithoutRef<'i'> {
+  name?: string;
   className?: string;
-  svg: IconSVG;
+  svg?: IconSVG;
   width?: number;
   height?: number;
   fill?: string;
@@ -24,6 +25,7 @@ export interface IconProps extends ComponentPropsWithoutRef<'i'> {
 
 export const Icon = (props: IconProps) => {
   const {
+    name,
     className = '',
     svg,
     width,
@@ -38,5 +40,16 @@ export const Icon = (props: IconProps) => {
     [IconSVG.Pause]: <Pause className={className} width={width} height={height} fill={fill} />,
   };
 
-  return svgIcon[svg];
+  if (svg) {
+    return svgIcon[svg];
+  }
+
+  return (
+    <i
+      className={`ri-${name} ${className}`}
+      role="img"
+      aria-label={ariaLabel || name}
+      {...otherProps}
+    />
+  );
 };
