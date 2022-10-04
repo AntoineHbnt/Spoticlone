@@ -5,6 +5,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "./.eslintrc-auto-import.json",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
