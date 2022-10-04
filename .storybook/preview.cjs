@@ -1,4 +1,4 @@
-import '../src/index.css';
+import '../src/index.scss';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -7,5 +7,14 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  backgrounds: {
+    default: 'dark',
+    values: [
+      {
+        name: 'dark',
+        value: '#121212',
+      },
+    ],
   },
 };
