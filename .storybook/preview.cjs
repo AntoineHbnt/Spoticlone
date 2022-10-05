@@ -1,4 +1,6 @@
 import '../src/index.scss';
+import 'remixicon/fonts/remixicon.css';
+import { withDecorator } from './decorator';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -18,3 +20,5 @@ export const parameters = {
     ],
   },
 };
+
+export const decorators = [withDecorator];

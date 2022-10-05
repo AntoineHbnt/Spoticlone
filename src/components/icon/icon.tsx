@@ -1,10 +1,17 @@
 import { ComponentPropsWithoutRef } from 'react';
+import LibraryEmpty from './icons/library-empty';
+import LibraryFulfilled from './icons/library-fulfilled';
 import Pause from './icons/pause';
 import Play from './icons/play';
 
 export enum IconSVG {
   Play = 'Play',
   Pause = 'Pause',
+  LibraryFulfilled = 'LibraryFulfilled',
+  LibraryEmpty = 'LibraryEmpty',
+  CreatePlaylistIcon = 'CreatePlaylistIcon',
+  LikedSongIcon = 'LikedSongIcon',
+  YourEpisodesIcon = 'YourEpisodesIcon',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -38,6 +45,27 @@ export const Icon = (props: IconProps) => {
   const svgIcon = {
     [IconSVG.Play]: <Play className={className} width={width} height={height} fill={fill} />,
     [IconSVG.Pause]: <Pause className={className} width={width} height={height} fill={fill} />,
+    [IconSVG.LibraryFulfilled]: (
+      <LibraryFulfilled className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.LibraryEmpty]: (
+      <LibraryEmpty className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.CreatePlaylistIcon]: (
+      <div className="flex h-full w-full items-center justify-center rounded-sm bg-white">
+        <Icon name={`add-fill text-black`} />
+      </div>
+    ),
+    [IconSVG.LikedSongIcon]: (
+      <div className="flex h-full w-full items-center justify-center rounded-sm bg-gradient-to-r from-[#450af5] to-[#c4efd9]">
+        <Icon name="heart-fill text-xs" />
+      </div>
+    ),
+    [IconSVG.YourEpisodesIcon]: (
+      <div className="flex h-full w-full items-center justify-center rounded-sm bg-[#006450]">
+        <Icon name="bookmark-fill text-spotify-green text-xs" />
+      </div>
+    ),
   };
 
   if (svg) {
