@@ -3,8 +3,10 @@ import LibraryEmpty from './icons/library-empty';
 import LibraryFulfilled from './icons/library-fulfilled';
 import Pause from './icons/pause';
 import Play from './icons/play';
+import SpotifyIcon from './icons/spotify';
 
 export enum IconSVG {
+  Spotify = 'spotify',
   Play = 'Play',
   Pause = 'Pause',
   LibraryFulfilled = 'LibraryFulfilled',
@@ -45,6 +47,9 @@ export const Icon = (props: IconProps) => {
   const svgIcon = {
     [IconSVG.Play]: <Play className={className} width={width} height={height} fill={fill} />,
     [IconSVG.Pause]: <Pause className={className} width={width} height={height} fill={fill} />,
+    [IconSVG.Spotify]: (
+      <SpotifyIcon className={className} width={width} height={height} fill={fill} />
+    ),
     [IconSVG.LibraryFulfilled]: (
       <LibraryFulfilled className={className} width={width} height={height} fill={fill} />
     ),
