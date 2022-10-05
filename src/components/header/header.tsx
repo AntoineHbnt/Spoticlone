@@ -1,3 +1,5 @@
+import { useAuthUser } from '../../hooks/auth/use-auth-user';
+import { Avatar } from '../avatar/avatar';
 import { Input } from '../forms/input/input';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
@@ -5,10 +7,11 @@ import { IconSVG } from '../icon/icon';
 export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { data: user } = useAuthUser();
   const homeActive = location.pathname === '/';
 
-  const handleSearch = (e: InputEvent) => {
-    const { value } = e.target as HTMLInputElement;
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
     value && navigate(`/search/${value}`);
   };
 
@@ -28,7 +31,9 @@ export const Header = () => {
           placeholder="What do you want to listen to?"
         />
       </div>
-      <div className="h-12 w-12 rounded-full bg-background-base"></div>
+      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background-base">
+        <Avatar src={user?.user_metadata.avatar_url} alt="avatar" />
+      </div>
     </header>
   );
 };
