@@ -30,22 +30,20 @@ const navigation = [
 
 const App = () => {
   return (
-    <div className="p-2">
-      <div className="flex gap-2">
-        <div className="w-60 shrink-0">
-          <Sidebar navigation={navigation} />
-        </div>
-        <main className="flex-1">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route element={<Protected />}>
-              {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
-              ))}
-            </Route>
-          </Routes>
-        </main>
+    <div className="flex h-screen w-full gap-2 bg-black p-2">
+      <div className="w-60 shrink-0">
+        <Sidebar navigation={navigation} />
       </div>
+      <main className="flex-1">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route element={<Protected />}>
+            {routes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
+          </Route>
+        </Routes>
+      </main>
     </div>
   );
 };

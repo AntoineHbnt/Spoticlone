@@ -9,7 +9,7 @@ export const Sidebar = (props: NavbarProps) => {
   const { navigation } = props;
 
   return (
-    <nav className="flex h-full w-full flex-col rounded-md bg-background-base">
+    <nav className="flex h-full w-full flex-col rounded-md bg-background-base px-6">
       <ul className="mt-3">
         {navigation.map((item) => (
           <NavItem
@@ -21,6 +21,7 @@ export const Sidebar = (props: NavbarProps) => {
           />
         ))}
       </ul>
+      <hr className="my-2 border-[#282828]" />
     </nav>
   );
 };
