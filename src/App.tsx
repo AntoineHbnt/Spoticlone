@@ -18,7 +18,7 @@ const App = () => {
             <Sidebar navigation={navigation} />
           </div>
         )}
-        <main className="flex-1">
+        <main className="flex-1 overflow-hidden rounded-md bg-background-base">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route element={<Protected />}>
