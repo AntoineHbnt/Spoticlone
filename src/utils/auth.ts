@@ -9,3 +9,8 @@ export const signInWithSpotify = async () => {
 export const signout = async () => {
   const { error } = await supabase.auth.signOut();
 };
+
+export const getUser = async () => {
+  const user = supabase.auth.user();
+  return user;
+};
