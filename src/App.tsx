@@ -19,16 +19,18 @@ const App = () => {
             <Sidebar navigation={navigation} />
           </div>
         )}
-        <main className="max-w-[1955px] flex-1 overflow-hidden rounded-md bg-background-base p-6">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route element={<Protected />}>
-              {routes.map((route) => (
-                <Route key={route.path} path={route.path} element={route.element} />
-              ))}
-            </Route>
-          </Routes>
-        </main>
+        <div className="flex-1 overflow-hidden rounded-md bg-background-base">
+          <main className="w-full max-w-[1955px] p-6">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route element={<Protected />}>
+                {routes.map((route) => (
+                  <Route key={route.path} path={route.path} element={route.element} />
+                ))}
+              </Route>
+            </Routes>
+          </main>
+        </div>
       </div>
     </div>
   );
