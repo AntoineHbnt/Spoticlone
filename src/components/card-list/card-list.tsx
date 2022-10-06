@@ -2,11 +2,11 @@ import { Card, CardProps } from '../card/card';
 
 export interface CardListProps {
   title: string;
-  children: JSX.Element[];
+  data: any;
 }
 
 export const CardList = (props: CardListProps) => {
-  const { title, children } = props;
+  const { title, data } = props;
   const element = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(0);
 
@@ -36,7 +36,16 @@ export const CardList = (props: CardListProps) => {
         className={`grid gap-6`}
         style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
       >
-        {children && children.slice(0, columnCount)}
+        {/* {children && children.slice(0, columnCount)} */}
+        {data &&
+          data.items.map(
+            (elem: any, index: number) =>
+              index < columnCount && (
+                <div key={`card-${index}`}>
+                  <Card data={elem} />
+                </div>
+              )
+          )}
       </div>
     </div>
   );

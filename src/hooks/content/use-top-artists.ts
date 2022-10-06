@@ -3,19 +3,16 @@ import { queryKeys } from '../query-keys';
 import axios from 'axios';
 import { supabase } from '../../supabaseClient';
 
-export interface TopItemsParams {
-  type: 'tracks' | 'artists';
+export interface TopArtistsParams {
   limit?: number;
 }
 
-export const useTopItems = (params: TopItemsParams) => {
-  return useQuery(queryKeys.topItems(params), async () => {
-    const { type, limit = 50 } = params;
-
-    console.log(type);
+export const useTopArtists = (params: TopArtistsParams) => {
+  return useQuery(queryKeys.topArtists(params), async () => {
+    const { limit = 50 } = params;
 
     try {
-      const response = await axios.get(`https://api.spotify.com/v1/me/top/${type}?limit=${limit}`, {
+      const response = await axios.get(`https://api.spotify.com/v1/me/top/artists?limit=${limit}`, {
         headers: {
           Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
           'Content-Type': 'application/json',

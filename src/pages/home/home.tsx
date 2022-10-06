@@ -2,12 +2,15 @@ import { useAuthUser } from '../../hooks/auth/use-auth-user';
 import { Helmet } from 'react-helmet';
 import { Greetings } from './greetings';
 import { CardList } from '../../components/card-list/card-list';
-import { useTopItems } from '../../hooks/content/use-top-item';
 import { Card } from '../../components/card/card';
+import { useTopTracks } from '../../hooks/content/use-top-tracks';
+import { useTopArtists } from '../../hooks/content/use-top-artists';
 
 export const Home = () => {
-  const { data: topTracks } = useTopItems({ type: 'tracks', limit: 9 });
-  const { data: topArtists } = useTopItems({ type: 'artists', limit: 9 });
+  const { data: topTracks } = useTopTracks({ limit: 9 });
+  const { data: topArtists } = useTopArtists({ limit: 9 });
+
+  console.log(topTracks, topArtists);
 
   return (
     <>
@@ -16,46 +19,8 @@ export const Home = () => {
       </Helmet>
       <div className="flex h-full flex-col gap-6">
         <Greetings />
-        <CardList title="Your top tracks">
-          {topTracks &&
-            topTracks.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList>
-        <CardList title="Your top tracks">
-          {topTracks &&
-            topTracks.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList>
-        <CardList title="Your top tracks">
-          {topTracks &&
-            topTracks.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList>
-        <CardList title="Your top tracks">
-          {topTracks &&
-            topTracks.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList>
-        <CardList title="Your top tracks">
-          {topTracks &&
-            topTracks.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList>
+        <CardList title="Your top tracks" data={topTracks} />
+        <CardList title="Your top artists" data={topArtists} />
       </div>
     </>
   );
