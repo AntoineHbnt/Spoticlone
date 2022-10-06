@@ -8,15 +8,13 @@ export interface CardListProps {
 export const CardList = (props: CardListProps) => {
   const { title, children } = props;
   const element = useRef<HTMLDivElement>(null);
-  const [columnCount, setColumnCount] = useState(7);
+  const [columnCount, setColumnCount] = useState(0);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       const width = entries[0].contentRect.width;
-      const nb = Math.round(width / 180);
+      const nb = Math.round(width / 226);
       setColumnCount(nb > 9 ? 9 : nb);
-
-      console.log({ width, nb });
     });
     resizeObserver.observe(element.current!);
 
@@ -30,7 +28,7 @@ export const CardList = (props: CardListProps) => {
       <div className="mb-4 flex w-full items-center justify-between">
         <h2 className="text-2xl font-bold text-white">{title}</h2>
         <a href="#" className="text-xs font-bold text-gray-400 hover:underline">
-          VOIR TOUT
+          SEE ALL
         </a>
       </div>
       <div

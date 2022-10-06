@@ -12,6 +12,8 @@ export const useTopItems = (params: TopItemsParams) => {
   return useQuery(queryKeys.topItems(params), async () => {
     const { type, limit = 50 } = params;
 
+    console.log(type);
+
     try {
       const response = await axios.get(`https://api.spotify.com/v1/me/top/${type}?limit=${limit}`, {
         headers: {

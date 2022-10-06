@@ -11,16 +11,16 @@ const App = () => {
   const connectedUser = !noLayoutNavigation.some((path) => location.pathname.includes(path));
 
   return (
-    <div className="flex h-screen w-screen flex-col gap-2 overflow-hidden bg-black p-2">
+    <div className="flex h-screen w-screen flex-col gap-2 bg-black p-2">
       {connectedUser && <Header />}
-      <div className="flex h-full w-full gap-2">
+      <div className="flex h-[calc(100%_-_64px)] w-full gap-2">
         {connectedUser && (
           <div className="w-60 shrink-0">
             <Sidebar navigation={navigation} />
           </div>
         )}
-        <div className="flex-1 overflow-hidden rounded-md bg-background-base">
-          <main className="w-full max-w-[1955px] p-6">
+        <div className="h-full flex-1  overflow-y-auto rounded-md bg-background-base">
+          <main className="h-full w-full max-w-[1955px] p-6">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route element={<Protected />}>

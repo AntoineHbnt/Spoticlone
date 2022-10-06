@@ -14,7 +14,7 @@ export const Home = () => {
       <Helmet>
         <title>Spoticlone - Web Player</title>
       </Helmet>
-      <div className="h-full overflow-y-auto">
+      <div className="flex h-full flex-col gap-6">
         <Greetings />
         <CardList title="Your top tracks">
           {topTracks &&
@@ -56,14 +56,6 @@ export const Home = () => {
               </div>
             ))}
         </CardList>
-        {/* <CardList title="Your top tracks">
-          {topArtists &&
-            topArtists.items.map((elem: any, index: number) => (
-              <div key={`card-${index}`}>
-                <Card data={elem} />
-              </div>
-            ))}
-        </CardList> */}
       </div>
     </>
   );

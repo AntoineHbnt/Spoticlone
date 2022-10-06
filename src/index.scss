@@ -3,3 +3,13 @@
 @tailwind utilities;
 
 @import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap';
+
+::-webkit-scrollbar {
+  width: 16px;
+  padding: 0 1px;
+  background: transparent;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: hsla(0, 0%, 100%, 0.3);
+}

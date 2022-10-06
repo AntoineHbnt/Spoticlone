@@ -8,6 +8,8 @@ export const useAuthCheck = () => {
     () => {
       const session = supabase.auth.session();
 
+      console.log(session);
+
       return session !== null;
     },
     {
