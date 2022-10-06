@@ -3,6 +3,7 @@ import { Avatar } from '../avatar/avatar';
 import { Input } from '../forms/input/input';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
+import { signOut } from '../../utils/auth';
 
 export const Header = () => {
   const location = useLocation();
@@ -31,9 +32,12 @@ export const Header = () => {
           placeholder="What do you want to listen to?"
         />
       </div>
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background-base">
+      <button
+        onClick={() => signOut()}
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-background-base"
+      >
         <Avatar src={user?.user_metadata.avatar_url} alt="avatar" />
-      </div>
+      </button>
     </header>
   );
 };
