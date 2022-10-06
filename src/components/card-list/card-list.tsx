@@ -2,11 +2,11 @@ import { Card, CardProps } from '../card/card';
 
 export interface CardListProps {
   title: string;
-  cards: CardProps[];
+  content: any;
 }
 
 export const CardList = (props: CardListProps) => {
-  const { title, cards } = props;
+  const { title, content } = props;
 
   return (
     <div className="flex w-full flex-col">
@@ -17,9 +17,9 @@ export const CardList = (props: CardListProps) => {
         </a>
       </div>
       <div className="flex gap-6">
-        {cards.map((card, index) => (
+        {content.map((elem: any, index: number) => (
           <div key={`card-${index}`}>
-            <Card {...card} />
+            <Card {...elem} />
           </div>
         ))}
       </div>

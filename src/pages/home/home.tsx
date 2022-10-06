@@ -1,15 +1,25 @@
 import { useAuthUser } from '../../hooks/auth/use-auth-user';
+import { Helmet } from 'react-helmet';
+import { Greetings } from './greetings';
+import { CardList } from '../../components/card-list/card-list';
+import { useTopItems } from '../../hooks/content/use-top-item';
 
 export const Home = () => {
-  const { data: user } = useAuthUser();
-  const { avatar_url, full_name } = user?.user_metadata || {};
+  const { data: topTracks } = useTopItems({ type: 'tracks' });
 
-  console.log(user);
+  useEffect(() => {
+    console.log(topTracks);
+  }, [topTracks]);
 
   return (
-    <div>
-      {full_name}
-      <img src={avatar_url} alt="" />
-    </div>
+    <>
+      <Helmet>
+        <title>Spoticlone - Web Player</title>
+      </Helmet>
+      <div className="h-full overflow-y-auto">
+        <Greetings />
+        {/* <CardList title='Your top tracks'  /> */}
+      </div>
+    </>
   );
 };

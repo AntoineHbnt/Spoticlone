@@ -8,17 +8,18 @@ import { routes } from './router';
 
 const App = () => {
   const location = useLocation();
+  const connectedUser = !noLayoutNavigation.some((path) => location.pathname.includes(path));
 
   return (
     <div className="flex h-screen w-screen flex-col gap-2 bg-black p-2">
-      <Header />
+      {connectedUser && <Header />}
       <div className="flex h-full w-full gap-2">
-        {!noLayoutNavigation.some((path) => location.pathname.includes(path)) && (
+        {connectedUser && (
           <div className="w-60 shrink-0">
             <Sidebar navigation={navigation} />
           </div>
         )}
-        <main className="flex-1 overflow-hidden rounded-md bg-background-base">
+        <main className="flex-1 overflow-hidden rounded-md bg-background-base p-6">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route element={<Protected />}>

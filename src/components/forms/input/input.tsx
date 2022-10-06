@@ -17,7 +17,11 @@ export const Input = (props: InputProps) => {
         className={`ri-xl flex h-full items-center gap-4 overflow-hidden rounded-full bg-background-base px-3 text-white`}
       >
         <Icon name="search-line" />
-        <input type="text" className="flex-1 font-sans text-sm" {...rest} />
+        <input
+          type="text"
+          className="flex-1 bg-transparent font-sans text-sm focus:outline-0"
+          {...rest}
+        />
       </div>
     </label>
   );
