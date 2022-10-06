@@ -1,9 +1,14 @@
 import { supabase } from '../supabaseClient';
 
 export const signInWithSpotify = async () => {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: 'spotify',
-  });
+  const { user, session, error } = await supabase.auth.signIn(
+    {
+      provider: 'spotify',
+    },
+    {
+      scopes: 'user-read-email user-read-private user-top-read',
+    }
+  );
 };
 
 export const signOut = async () => {

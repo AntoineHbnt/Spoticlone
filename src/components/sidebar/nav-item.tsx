@@ -13,8 +13,6 @@ export const NavItem = (props: NavItemProps) => {
   let location = useLocation();
   const active = location.pathname === path;
 
-  console.log(activeIcon);
-
   return (
     <li
       className={`ease cursor-pointer text-white transition duration-300 hover:opacity-100 ${

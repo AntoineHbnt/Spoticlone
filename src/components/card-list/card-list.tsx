@@ -2,11 +2,28 @@ import { Card, CardProps } from '../card/card';
 
 export interface CardListProps {
   title: string;
-  content: any;
+  children: JSX.Element[];
 }
 
 export const CardList = (props: CardListProps) => {
-  const { title, content } = props;
+  const { title, children } = props;
+  const element = useRef<HTMLDivElement>(null);
+  const [columnCount, setColumnCount] = useState(7);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
+      const width = entries[0].contentRect.width;
+      const nb = Math.round(width / 180);
+      setColumnCount(nb > 9 ? 9 : nb);
+
+      console.log({ width, nb });
+    });
+    resizeObserver.observe(element.current!);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   return (
     <div className="flex w-full flex-col">
@@ -16,12 +33,12 @@ export const CardList = (props: CardListProps) => {
           VOIR TOUT
         </a>
       </div>
-      <div className="flex gap-6">
-        {content.map((elem: any, index: number) => (
-          <div key={`card-${index}`}>
-            <Card {...elem} />
-          </div>
-        ))}
+      <div
+        ref={element}
+        className={`grid gap-6`}
+        style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
+      >
+        {children && children.slice(0, columnCount)}
       </div>
     </div>
   );
