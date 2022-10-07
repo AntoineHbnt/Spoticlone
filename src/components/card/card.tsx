@@ -18,7 +18,7 @@ export const Card = (props: CardProps) => {
         <Thumbnail src={src} alt="" className={isTrack ? 'rounded' : 'rounded-full'} />
         <PlayButton
           isPlaying={false}
-          className="play-button ease absolute bottom-0 right-2 cursor-default opacity-0 transition duration-300"
+          className="play-button ease absolute bottom-0 right-2 z-10 cursor-default opacity-0 transition duration-300"
           onChange={() => {}}
         />
       </div>

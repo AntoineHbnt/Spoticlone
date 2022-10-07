@@ -7,7 +7,7 @@ export const Artists = (props: ArtistProps) => {
 
   return artists.map((artist: any, index: number) => (
     <>
-      <NavLink key={'artist-' + index} to={`artist/${artist.id}`} className="hover:underline">
+      <NavLink key={`artist-${index}`} to={`artist/${artist.id}`} className="hover:underline">
         {artist.name}
       </NavLink>
       {index < artists.length - 1 ? ', ' : ''}

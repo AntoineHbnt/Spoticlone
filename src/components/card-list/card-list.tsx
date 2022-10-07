@@ -28,25 +28,22 @@ export const CardList = (props: CardListProps) => {
   return (
     <div className="flex w-full flex-col">
       <div className="mb-4 flex w-full items-center justify-between">
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
-        <a href="#" className="text-xs font-bold text-gray-400 hover:underline">
+        <NavLink to="">
+          <h2 className="text-2xl font-bold text-white hover:underline">{title}</h2>
+        </NavLink>
+        <NavLink to="" className="text-xs font-bold text-gray-400 hover:underline">
           SEE ALL
-        </a>
+        </NavLink>
       </div>
       <div
         ref={element}
         className={`grid gap-6`}
         style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
       >
-        {/* {children && children.slice(0, columnCount)} */}
         {data &&
           data.items.map(
             (elem: any, index: number) =>
-              index < columnCount && (
-                <div key={`card-${index}`}>
-                  <Card data={elem} />
-                </div>
-              )
+              index < columnCount && <Card key={`card-${index}`} data={elem} />
           )}
       </div>
     </div>
