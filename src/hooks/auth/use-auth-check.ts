@@ -7,9 +7,6 @@ export const useAuthCheck = () => {
     queryKeys.authCheck(),
     () => {
       const session = supabase.auth.session();
-
-      console.log(session);
-
       return session !== null;
     },
     {

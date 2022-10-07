@@ -10,8 +10,6 @@ export const Home = () => {
   const { data: topTracks } = useTopTracks({ limit: 9 });
   const topArtists = useTopArtists({ limit: 9 });
 
-  console.log(topTracks, topArtists);
-
   return (
     <>
       <Helmet>
