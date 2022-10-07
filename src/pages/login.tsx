@@ -14,7 +14,7 @@ export const Login = () => {
   }
 
   return (
-    <div className="flex h-full w-full items-center justify-center bg-black">
+    <div className="absolute inset-0 flex h-screen w-screen items-center justify-center bg-black">
       <button
         onClick={signInWithSpotify}
         className="flex h-fit items-center gap-2 rounded-full bg-green-500 py-2 px-4 font-bold text-white hover:bg-green-700"

@@ -8,7 +8,7 @@ import { useTopArtists } from '../../hooks/content/use-top-artists';
 
 export const Home = () => {
   const { data: topTracks } = useTopTracks({ limit: 9 });
-  const { data: topArtists } = useTopArtists({ limit: 9 });
+  const topArtists = useTopArtists({ limit: 9 });
 
   console.log(topTracks, topArtists);
 

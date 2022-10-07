@@ -1,3 +1,5 @@
+import { TopArtistsParams } from '../../hooks/content/use-top-artists';
+import { TopTracksParams } from '../../hooks/content/use-top-tracks';
 import { Card, CardProps } from '../card/card';
 
 export interface CardListProps {
