@@ -27,10 +27,7 @@ export const Card = (props: CardProps) => {
         <div className="z-10 h-[2.5rem] text-sm text-gray-400 line-clamp-2">
           {isTrack ? <Artists artists={data.artists} /> : <span>Artist</span>}
         </div>
-        <NavLink
-          to={isTrack ? `/album/${data.id}` : `/artist/${data.id}`}
-          className="absolute inset-0 h-full w-full"
-        />
+        <NavLink to={`/${data.type}/${data.id}`} className="absolute inset-0 h-full w-full" />
       </div>
     </div>
   );

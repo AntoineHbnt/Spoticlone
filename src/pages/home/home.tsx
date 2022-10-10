@@ -11,7 +11,7 @@ export const Home = () => {
   const topArtists = useTopArtists({ limit: 9 });
 
   return (
-    <>
+    <div className="p-6">
       <Helmet>
         <title>Spoticlone - Web Player</title>
       </Helmet>
@@ -20,6 +20,6 @@ export const Home = () => {
         <CardList title="Your top tracks" data={topTracks} />
         <CardList title="Your top artists" data={topArtists} />
       </div>
-    </>
+    </div>
   );
 };

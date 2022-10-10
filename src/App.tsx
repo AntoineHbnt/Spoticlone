@@ -20,7 +20,7 @@ const App = () => {
           </div>
         )}
         <div className="h-full flex-1  overflow-y-auto rounded-md bg-background-base">
-          <main className="h-full w-full max-w-[1955px] p-6">
+          <main className="h-full w-full max-w-[1955px]">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route element={<Protected />}>
