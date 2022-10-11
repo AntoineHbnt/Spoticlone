@@ -1,13 +1,13 @@
-import { PlayButton } from '../play-button/play-button';
+import { PlayButton, PlayButtonProps } from '../play-button/play-button';
 
-export const Player = () => {
+export const Player = (props: PlayButtonProps) => {
   return (
     <div className="flex">
       <PlayButton
-        isPlaying={false}
-        onChange={() => {}}
         className="h-14 w-14 hover:scale-105"
         iconWidth={28}
+        contextUri={props.contextUri}
+        albumOffset={props.albumOffset}
       />
     </div>
   );

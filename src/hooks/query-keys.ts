@@ -7,4 +7,5 @@ export const queryKeys = {
   topTracks: (args: TopTracksParams) => ['topTracks'],
   topArtists: (args: TopArtistsParams) => ['topArtists'],
   getItem: (id: string, type: string) => ['getItem', id, type],
+  getActiveDevice: () => ['getActiveDevice'],
 };

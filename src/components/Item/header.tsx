@@ -49,7 +49,7 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div
-      className="lg:h-h-lg-item-header flex h-sm-item-header w-full shrink-0 items-end gap-6 overflow-hidden p-6"
+      className="lg:h-h-lg-item-header flex h-sm-item-header w-full shrink-0 items-end gap-6 overflow-hidden p-6 lg:px-8"
       style={{ backgroundColor: color }}
     >
       <Thumbnail src={image} alt="album cover" className="w-48 shrink-0 lg:w-56" />

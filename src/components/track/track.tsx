@@ -19,22 +19,20 @@ export const Track = () => {
   console.log(data);
 
   handleColor();
-  const { type, name, album, artists, duration_ms } = data;
+  const { type, name, album, artists, duration_ms, track_number } = data;
 
   return (
     <div id="track-container" className="flex h-full w-full flex-col">
-      <div>
-        <Header
-          itemType={type}
-          name={name}
-          image={album.images[0].url}
-          artists={artists}
-          releaseDate={album.release_date}
-          duration={duration_ms}
-          color={vibrantColor}
-        />
-        <Content color={vibrantColor} />
-      </div>
+      <Header
+        itemType={type}
+        name={name}
+        image={album.images[0].url}
+        artists={artists}
+        releaseDate={album.release_date}
+        duration={duration_ms}
+        color={vibrantColor}
+      />
+      <Content color={vibrantColor} contextUri={album.uri} albumOffset={track_number - 1} />
     </div>
   );
 };
