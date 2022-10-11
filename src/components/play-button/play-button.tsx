@@ -9,7 +9,7 @@ export interface PlayButtonProps {
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { className, isPlaying, iconWidth, onChange } = props;
+  const { className, isPlaying, iconWidth = 24, onChange } = props;
 
   return (
     <button
