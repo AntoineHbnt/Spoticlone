@@ -1,7 +1,7 @@
 import Vibrant from 'node-vibrant';
 import { SetStateAction } from 'react';
 import { useGetItem } from '../../hooks/content/use-get-item';
-import { ItemHeader } from '../itemHeader/itemHeader';
+import { Header } from '../Item/header';
 
 export const Track = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +15,8 @@ export const Track = () => {
 
   if (!data) return <div>Loading...</div>;
 
+  console.log(data);
+
   handleColor();
   const { type, name, album, artists, duration_ms } = data;
 
@@ -27,7 +29,7 @@ export const Track = () => {
         backgroundColor: 'transparent',
       }}
     >
-      <ItemHeader
+      <Header
         itemType={type}
         name={name}
         image={album.images[0].url}

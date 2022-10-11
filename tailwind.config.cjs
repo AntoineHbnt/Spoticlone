@@ -32,6 +32,10 @@ module.exports = {
         warning: '#ffa42b',
         positive: '#1ed760',
       },
+      height: {
+        'sm-item-header': '310px',
+        'lg-item-header': '350px',
+      },
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],
