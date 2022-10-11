@@ -7,10 +7,11 @@ export interface HeaderProps {
   artists: any;
   releaseDate: string;
   duration: number;
+  color: string;
 }
 
 export const Header = (props: HeaderProps) => {
-  const { itemType, name, image, artists, releaseDate, duration } = props;
+  const { itemType, name, image, artists, releaseDate, duration, color = '#000000' } = props;
 
   const durationParser = (duration: number) => {
     let minutes = Math.floor(duration / 60000);
@@ -47,7 +48,10 @@ export const Header = (props: HeaderProps) => {
   };
 
   return (
-    <div className="lg:h-h-lg-item-header flex h-sm-item-header w-full items-end gap-6 overflow-hidden p-6">
+    <div
+      className="lg:h-h-lg-item-header flex h-sm-item-header w-full shrink-0 items-end gap-6 overflow-hidden p-6"
+      style={{ backgroundColor: color }}
+    >
       <Thumbnail src={image} alt="album cover" className="w-48 shrink-0 lg:w-56" />
       <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
         <h2 className="text-xs font-bold text-white">{itemType.toUpperCase()}</h2>

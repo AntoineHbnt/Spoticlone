@@ -19,7 +19,7 @@ const App = () => {
             <Sidebar navigation={navigation} />
           </div>
         )}
-        <div className="h-full flex-1  overflow-y-auto rounded-md bg-background-base">
+        <div className="h-full flex-1 overflow-hidden rounded-md bg-background-base">
           <main className="h-full w-full max-w-[1955px]">
             <Routes>
               <Route path="/login" element={<Login />} />
