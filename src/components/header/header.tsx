@@ -3,11 +3,12 @@ import { Avatar } from '../avatar/avatar';
 import { Input } from '../forms/input/input';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
-import { signOut } from '../../utils/auth';
+import { useLogout } from '../../hooks/auth/use-logout';
 
 export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { mutate: logout } = useLogout();
   const { data: user } = useAuthUser();
   const homeActive = location.pathname === '/';
 
@@ -33,10 +34,10 @@ export const Header = () => {
         />
       </div>
       <button
-        onClick={() => signOut()}
+        onClick={() => logout()}
         className="flex h-12 w-12 items-center justify-center rounded-full bg-background-base"
       >
-        <Avatar src={user?.user_metadata.avatar_url} alt="avatar" />
+        <Avatar src={user!.avatar_url} alt="avatar" />
       </button>
     </header>
   );
