@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '../query-keys';
-import axios from 'axios';
-import { supabase } from '../../supabaseClient';
+import { apiSpotify } from '../../utils/axios';
 
 export interface TopTracksParams {
   limit?: number;
@@ -12,12 +11,9 @@ export const useTopTracks = (params: TopTracksParams) => {
     const { limit = 50 } = params;
 
     try {
-      const response = await axios.get(`https://api.spotify.com/v1/me/top/tracks?limit=${limit}`, {
-        headers: {
-          Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await apiSpotify.get(
+        `https://api.spotify.com/v1/me/top/tracks?limit=${limit}`
+      );
 
       return response.data;
     } catch (error) {

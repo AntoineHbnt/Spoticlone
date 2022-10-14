@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '../query-keys';
 import { supabase } from '../../supabaseClient';
+import { apiClient } from '../../utils/axios/axios';
+import { AuthUserSchema } from '../../types/schema/auth';
 
-export const useAuthUser = () => {
+export function useAuthUser() {
   return useQuery(
     queryKeys.authUser(),
-    () => {
-      const currentUser = supabase.auth.user();
+    async () => {
+      const response = await apiClient.get('/me');
 
-      return currentUser;
+      return AuthUserSchema.parse(response.data);
     },
     {
       staleTime: Infinity,
     }
   );
-};
+}
