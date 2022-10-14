@@ -1,13 +1,13 @@
-import { useAuthCheck } from '../../hooks/auth/use-auth-check';
+import { useSession } from '../../hooks/auth/use-session';
 
 export const Protected = ({ redirectPath = '/login' }) => {
-  const { data, status } = useAuthCheck();
+  const { data: session, status } = useSession();
 
   if (status === 'loading') {
     return <div>Loading...</div>;
   }
 
-  if (data?.authenticated) {
+  if (session) {
     return <Outlet />;
   }
 

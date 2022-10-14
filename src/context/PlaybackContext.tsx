@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from 'react';
-import { apiSPotify } from '../utils/axios';
+import { apiSpotify } from '../utils/axios';
 
 const PlayBackContext = createContext<any>({});
 
@@ -8,7 +8,7 @@ const PlayBackContextProvider = (props: { children: ReactNode }) => {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const response = await apiSPotify.get('/me/player');
+      const response = await apiSpotify.get('/me/player');
       setPlayback(response.data);
     }, 1000);
     return () => clearInterval(interval);

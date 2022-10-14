@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useGetActiveDevice } from '../../hooks/player/use-get-active-device';
+import { PlayBackContext } from '../../context/PlaybackContext';
 import { supabase } from '../../supabaseClient';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
@@ -13,8 +13,8 @@ export interface PlayButtonProps {
 
 export const PlayButton = (props: PlayButtonProps) => {
   const { className, iconWidth = 24, contextUri, albumOffset } = props;
-  const { data: device } = useGetActiveDevice();
   const [isPlaying, setIsPlaying] = useState(false);
+  const playback = useContext(PlayBackContext);
 
   const handleClick = async () => {
     if (isPlaying) {
@@ -39,7 +39,7 @@ export const PlayButton = (props: PlayButtonProps) => {
             Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
           },
           params: {
-            device_id: device.id,
+            device_id: playback.device.id,
           },
         }
       );
