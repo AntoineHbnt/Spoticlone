@@ -9,7 +9,7 @@ export const Login = () => {
     return <div>Loading...</div>;
   }
 
-  if (session) {
+  if (session !== null) {
     return <Navigate to="/" replace />;
   }
 
