@@ -7,9 +7,5 @@ export const Protected = ({ redirectPath = '/login' }) => {
     return <div>Loading...</div>;
   }
 
-  if (session) {
-    return <Outlet />;
-  }
-
-  return <Navigate to={redirectPath} replace />;
+  return session !== null ? <Outlet /> : <Navigate to={redirectPath} replace />;
 };

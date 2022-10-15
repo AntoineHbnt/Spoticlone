@@ -2,19 +2,22 @@ import { Header } from './components/header/header';
 import { IconSVG } from './components/icon/icon';
 import { Protected } from './components/protected/protected';
 import { Sidebar } from './components/sidebar/sidebar';
+import { useSession } from './hooks/auth/use-session';
 import { navigation, noLayoutNavigation } from './navigation';
 import { Login } from './pages/login';
 import { routes } from './router';
+import { supabase } from './supabaseClient';
 
 const App = () => {
   const location = useLocation();
+  const { data: session } = useSession();
   const connectedUser = !noLayoutNavigation.some((path) => location.pathname.includes(path));
 
   return (
     <div className="flex h-screen w-screen flex-col gap-2 bg-black p-2">
-      {connectedUser && <Header />}
+      {session && connectedUser && <Header />}
       <div className="flex h-[calc(100%_-_64px)] w-full gap-2">
-        {connectedUser && (
+        {session && connectedUser && (
           <div className="w-60 shrink-0">
             <Sidebar navigation={navigation} />
           </div>
