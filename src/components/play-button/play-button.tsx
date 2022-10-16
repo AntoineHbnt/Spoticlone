@@ -1,55 +1,39 @@
 import axios from 'axios';
 import { PlayBackContext } from '../../context/PlaybackContext';
-import { supabase } from '../../supabaseClient';
+import { usePausePlayback } from '../../hooks/player/use-pause-playback';
+import { useStartPlayback } from '../../hooks/player/use-start-playback';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
 
 export interface PlayButtonProps {
   className?: string;
   iconWidth?: number;
-  contextUri: string;
-  albumOffset: number;
+  itemData: any;
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { className, iconWidth = 24, contextUri, albumOffset } = props;
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { className, iconWidth = 24, itemData } = props;
   const playback = useContext(PlayBackContext);
 
-  const handleClick = async () => {
-    if (isPlaying) {
-    }
-    if (!isPlaying) {
-      console.log(contextUri);
+  const [isPlaying, setIsPlaying] = useState(
+    playback && playback.is_playing && playback.context?.uri === itemData.album.uri
+  );
 
-      const response = await axios.put(
-        'https://api.spotify.com/v1/me/player/play',
-        // '{\n  "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",\n  "offset": {\n    "position": 5\n  },\n  "position_ms": 0\n}',
-        {
-          context_uri: contextUri,
-          offset: {
-            position: albumOffset,
-          },
-          position_ms: 0,
-        },
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
-          },
-          params: {
-            device_id: playback.device.id,
-          },
-        }
-      );
-      console.log(response);
-    }
-  };
+  useEffect(() => {
+    setIsPlaying(playback && playback.is_playing && playback.context?.uri === itemData.album.uri);
+  }, [playback]);
+
+  const { mutateAsync: startPlayback } = useStartPlayback(
+    itemData.album.uri,
+    itemData.track_number - 1,
+    0
+  );
+
+  const { mutateAsync: pausePlayback } = usePausePlayback();
 
   return (
     <button
-      onClick={() => handleClick()}
+      onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
       className={`flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-spotify-green drop-shadow-[0_8px_8px_rgba(0,0,0,0.3)] ${className}`}
     >
       {isPlaying ? (

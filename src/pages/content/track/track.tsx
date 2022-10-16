@@ -17,7 +17,7 @@ export const Track = () => {
   if (!data) return <div>Loading...</div>;
 
   handleColor();
-  const { type, name, album, artists, duration_ms, track_number } = data;
+  const { type, name, album, artists, duration_ms } = data;
 
   return (
     <div id="track-container" className="flex h-full w-full flex-col">
@@ -30,7 +30,7 @@ export const Track = () => {
         duration={duration_ms}
         color={vibrantColor}
       />
-      <Content color={vibrantColor} contextUri={album.uri} albumOffset={track_number - 1} />
+      <Content color={vibrantColor} itemData={data} />
     </div>
   );
 };
