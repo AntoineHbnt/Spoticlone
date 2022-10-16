@@ -14,22 +14,18 @@ export interface PlayButtonProps {
 export const PlayButton = (props: PlayButtonProps) => {
   const { className, iconWidth = 24, itemData } = props;
   const playback = useContext(PlayBackContext);
+  const itemUri: string = itemData.type === 'track' ? itemData.album.uri : itemData.uri;
+  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === itemUri;
 
-  const [isPlaying, setIsPlaying] = useState(
-    playback && playback.is_playing && playback.context?.uri === itemData.album.uri
-  );
+  const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
 
-  useEffect(() => {
-    setIsPlaying(playback && playback.is_playing && playback.context?.uri === itemData.album.uri);
-  }, [playback]);
-
-  const { mutateAsync: startPlayback } = useStartPlayback(
-    itemData.album.uri,
-    itemData.track_number - 1,
-    0
-  );
+  const { mutateAsync: startPlayback } = useStartPlayback(itemUri, itemData.track_number - 1, 0);
 
   const { mutateAsync: pausePlayback } = usePausePlayback();
+
+  useEffect(() => {
+    setIsPlaying(isPlayingCondition);
+  }, [playback]);
 
   return (
     <button
