@@ -11,7 +11,11 @@ const PlayBackContextProvider = (props: { children: ReactNode }) => {
   useEffect(() => {
     if (session) {
       const interval = setInterval(async () => {
-        const response = await apiSpotify.get('/me/player');
+        const response = await apiSpotify.get('/me/player', {
+          headers: {
+            Authorization: `Bearer ${session.provider_token}`,
+          },
+        });
         setPlayback(response.data);
       }, 1000);
       return () => clearInterval(interval);
