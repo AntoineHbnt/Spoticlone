@@ -16,8 +16,6 @@ export const Track = () => {
 
   if (!data) return <div>Loading...</div>;
 
-  console.log(data);
-
   handleColor();
   const { type, name, album, artists, duration_ms, track_number } = data;
 
@@ -26,7 +24,7 @@ export const Track = () => {
       <Header
         itemType={type}
         name={name}
-        image={album.images[0].url}
+        image={album.images[1].url}
         artists={artists}
         releaseDate={album.release_date}
         duration={duration_ms}
