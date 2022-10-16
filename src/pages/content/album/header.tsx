@@ -1,4 +1,4 @@
-import { Thumbnail } from '../thumbnail/thumbnail';
+import { Thumbnail } from '../../../components/thumbnail/thumbnail';
 
 export interface HeaderProps {
   data: any;

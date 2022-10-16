@@ -1,8 +1,8 @@
 import Vibrant from 'node-vibrant';
 import { SetStateAction } from 'react';
-import { useGetItem } from '../../hooks/content/use-get-item';
-import { Content } from '../Item/content';
-import { Header } from '../Item/header';
+import { useGetItem } from '../../../hooks/content/use-get-item';
+import { Content } from '../../../components/Item/content';
+import { Header } from '../../../components/Item/header';
 
 export const Track = () => {
   const { id } = useParams<{ id: string }>();
