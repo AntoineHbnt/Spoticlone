@@ -1,4 +1,4 @@
-import { Artist } from './Artist';
+import { Artist, ArtistSimplified } from './Artist';
 import { Image } from './Image';
 import { ExternalUrls } from './Misc';
 import { Track } from './Track';
@@ -37,9 +37,9 @@ export interface Album {
 }
 export type AlbumGroup = 'album' | 'single' | 'compilation' | 'appears_on';
 export interface AlbumSimplified {
-  album_group: AlbumGroup;
+  album_group?: AlbumGroup;
   album_type: AlbumType;
-  artists: Artist[];
+  artists: ArtistSimplified[];
   available_markets: string[];
   external_urls: ExternalUrls;
   href: string;

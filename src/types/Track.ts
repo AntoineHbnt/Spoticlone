@@ -1,6 +1,6 @@
 import { AlbumSimplified } from './Album';
 import { ArtistSimplified } from './Artist';
-import { ExternalUrls } from './Misc';
+import { ExternalIds, ExternalUrls } from './Misc';
 
 export interface Track {
   album: AlbumSimplified;
@@ -9,11 +9,11 @@ export interface Track {
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
+  external_urls: ExternalUrls;
+  external_ids: ExternalIds;
   href: string;
   id: string;
-  items: TrackSimplified[];
   is_local: boolean;
-  is_playable: boolean;
   name: string;
   popularity: number;
   preview_url: string;
