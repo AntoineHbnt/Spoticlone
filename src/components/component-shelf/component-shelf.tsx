@@ -1,13 +1,15 @@
-import { TopArtistsParams } from '../../hooks/content/use-top-artists';
-import { TopTracksParams } from '../../hooks/content/use-top-tracks';
-import { Card, CardProps } from '../card/card';
+import { Album } from '../../types/Album';
+import { Artist } from '../../types/Artist';
+import { Paging } from '../../types/Paging';
+import { Track } from '../../types/Track';
+import { Card } from './card';
 
-export interface CardListProps {
+export interface ComponentShelfprops {
   title: string;
-  data: any;
+  data: Paging<Track | Album | Artist>;
 }
 
-export const CardList = (props: CardListProps) => {
+export const ComponentShelf = (props: ComponentShelfprops) => {
   const { title, data } = props;
   const element = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(0);
@@ -26,7 +28,7 @@ export const CardList = (props: CardListProps) => {
   }, []);
 
   return (
-    <div className="flex w-full flex-col">
+    <section className="flex w-full flex-col">
       <div className="mb-4 flex w-full items-center justify-between">
         <NavLink to="">
           <h2 className="text-2xl font-bold text-white hover:underline">{title}</h2>
@@ -46,6 +48,6 @@ export const CardList = (props: CardListProps) => {
               index < columnCount && <Card key={`card-${index}`} data={elem} />
           )}
       </div>
-    </div>
+    </section>
   );
 };
