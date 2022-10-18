@@ -1,3 +1,4 @@
+import { searchItemParams } from './content/use-search-item';
 import { TopArtistsParams } from './content/use-top-artists';
 import { TopTracksParams } from './content/use-top-tracks';
 
@@ -7,6 +8,7 @@ export const queryKeys = {
   topTracks: (args: TopTracksParams) => ['topTracks'],
   topArtists: (args: TopArtistsParams) => ['topArtists'],
   getItem: (id: string, type: string) => ['getItem', id, type],
+  searchItems: (args: searchItemParams) => ['searchItems'],
   getActiveDevice: () => ['getActiveDevice'],
 
   playbackState: () => ['playbackState'],

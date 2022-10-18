@@ -1,14 +1,14 @@
-import { Album } from '../../types/Album';
+import { Album, AlbumSimplified } from '../../types/Album';
 import { Artist } from '../../types/Artist';
 import { Paging } from '../../types/Paging';
-import { Track } from '../../types/Track';
+import { Track, TrackSimplified } from '../../types/Track';
 import { TrackListRow } from '../tracklist-row/tracklist-row';
 import { Card } from './card';
 
 export interface ComponentShelfprops {
   title: string;
   link?: string;
-  data: Paging<Track | Album | Artist>;
+  data: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
 }
 
 export const ComponentShelf = (props: ComponentShelfprops) => {

@@ -6,7 +6,6 @@ import { useSession } from './hooks/auth/use-session';
 import { navigation, noLayoutNavigation } from './navigation';
 import { Login } from './pages/login';
 import { routes } from './router';
-import { supabase } from './supabaseClient';
 
 const App = () => {
   const location = useLocation();
@@ -23,7 +22,7 @@ const App = () => {
           </div>
         )}
         <div className="h-full flex-1 overflow-hidden rounded-md bg-background-base">
-          <main className="h-full w-full max-w-[1955px]">
+          <main className="h-full w-full max-w-[1955px] overflow-y-auto">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route element={<Protected />}>
