@@ -10,7 +10,8 @@ export interface CardProps {
 export const Card = (props: CardProps) => {
   const { data } = props;
   const isTrack = data.type === 'track';
-  const src = isTrack ? data.album.images[0].url : data.images[0].url;
+  const images = data.images || data.album?.images;
+  const src = images[0]?.url || '';
 
   return (
     <div className="card ease w-100 relative flex cursor-pointer flex-col rounded-lg bg-[#181818] p-4 transition duration-300 hover:bg-[#282828]">
