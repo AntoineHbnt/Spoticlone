@@ -7,3 +7,9 @@
     }
   }
 }
+
+.play-button.active {
+  opacity: 100%;
+  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.05);
+}
