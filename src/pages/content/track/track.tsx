@@ -2,11 +2,11 @@ import Vibrant from 'node-vibrant';
 import { SetStateAction } from 'react';
 import { useGetItem } from '../../../hooks/content/use-get-item';
 import { Content } from '../../../components/Item/content';
-import { Header } from '../../../components/Item/header';
+import { Header } from '../album/header';
 import { Track as TrackType } from '../../../types/Track';
 
 export const Track = () => {
-  const { id } = useParams<{ id: string }>();
+  /* const { id } = useParams<{ id: string }>();
   const { data } = useGetItem(id!, 'track');
   const [vibrantColor, setVibrantColor] = useState<string>('#000000');
 
@@ -20,11 +20,11 @@ export const Track = () => {
   if (!track) return <div>Loading...</div>;
 
   handleColor();
-  const { type, name, album, artists, duration_ms } = track;
+  const { type, name, album, artists, duration_ms } = track; */
 
   return (
     <div id="track-container" className="flex h-full w-full flex-col">
-      <Header
+      {/* <Header
         itemType={type}
         name={name}
         image={album.images[1].url}
@@ -33,7 +33,7 @@ export const Track = () => {
         duration={duration_ms}
         color={vibrantColor}
       />
-      <Content color={vibrantColor} itemData={track} />
+      <Content color={vibrantColor} itemData={track} /> */}
     </div>
   );
 };

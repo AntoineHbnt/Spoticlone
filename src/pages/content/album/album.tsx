@@ -1,15 +1,20 @@
-import { useGetItem } from '../../../hooks/content/use-get-item';
 import { Header } from './header';
+import { useGetItem } from '../../../hooks/content/use-get-item';
+import { Album as AlbumType } from '../../../types/Album';
+import { Content } from '../../../components/Item/content';
 
 export const Album = () => {
   const { id } = useParams<{ id: string }>();
-  const { data } = useGetItem(id!, 'album');
+  const { data, status } = useGetItem(id!, 'album');
 
-  if (!data) return <div>Loading...</div>;
+  if (status === 'loading') return <div>Loading...</div>;
+
+  const album = data as AlbumType;
 
   return (
     <div className="flex w-full flex-col">
-      <Header data={data} />
+      <Header data={album as AlbumType} />
+      <Content data={album} />
     </div>
   );
 };

@@ -14,4 +14,6 @@ export const queryKeys = {
   playbackState: () => ['playbackState'],
   startPlayback: (contextUri: string, offset: number, position_ms: number) => ['startPlayback'],
   pausePlayback: () => ['pausePlayback'],
+
+  vibrant: (image: string) => ['vibrant', image],
 };
