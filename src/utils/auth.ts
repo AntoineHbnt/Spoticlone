@@ -1,6 +1,8 @@
 import { supabase } from '../supabaseClient';
 
 export const signInWithSpotify = async () => {
+  console.log('signInWithSpotify');
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'spotify',
     options: {
@@ -8,6 +10,9 @@ export const signInWithSpotify = async () => {
         'user-read-email user-read-private user-top-read user-modify-playback-state user-read-playback-state',
     },
   });
+
+  console.log(data, error);
+  sessionStorage.setItem('session', JSON.stringify(data));
 };
 
 export const signOut = async () => {
