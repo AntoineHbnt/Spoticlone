@@ -7,21 +7,13 @@ export const useStartPlayback = (contextUri: string, offset: number, position_ms
   const { mutateAsync, isLoading } = useMutation(
     queryKeys.startPlayback(contextUri, offset, position_ms),
     () =>
-      apiSpotify.put(
-        '/me/player/play',
-        {
-          context_uri: contextUri,
-          offset: {
-            position: offset,
-          },
-          position_ms: position_ms,
+      apiSpotify.put('/me/player/play', {
+        context_uri: contextUri,
+        offset: {
+          position: offset,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
-          },
-        }
-      ),
+        position_ms: position_ms,
+      }),
     {
       onSuccess: () => {
         console.log('Playback started');

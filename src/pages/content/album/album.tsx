@@ -1,5 +1,4 @@
 import { useGetItem } from '../../../hooks/content/use-get-item';
-import { albumDuration } from '../../utils/components/album';
 import { Header } from './header';
 
 export const Album = () => {

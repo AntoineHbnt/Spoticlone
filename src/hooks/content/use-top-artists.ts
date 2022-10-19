@@ -14,12 +14,7 @@ export interface TopArtistsParams {
 export const useTopArtists = (params: TopArtistsParams) => {
   return useQuery(queryKeys.topArtists(params), async (): Promise<Paging<Artist>> => {
     const { limit = 50 } = params;
-
-    const response = await apiSpotify.get(`/me/top/artists?limit=${limit}`, {
-      headers: {
-        Authorization: `Bearer ${supabase.auth.session()!.provider_token}`,
-      },
-    });
+    const response = await apiSpotify.get(`/me/top/artists?limit=${limit}`);
 
     return response.data;
   });

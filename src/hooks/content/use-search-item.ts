@@ -14,11 +14,7 @@ export const useSearchItem = (params: searchItemParams) => {
   return useQuery(queryKeys.searchItems(params), async (): Promise<SearchFromAPI> => {
     const { query, type, limit = 50 } = params;
 
-    const response = await apiSpotify.get(`/search?q=${query}&type=${type}&limit=${limit}`, {
-      headers: {
-        Authorization: `Bearer ${supabase.auth.session()!.provider_token}`,
-      },
-    });
+    const response = await apiSpotify.get(`/search?q=${query}&type=${type}&limit=${limit}`);
 
     return response.data;
   });

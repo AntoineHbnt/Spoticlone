@@ -13,11 +13,7 @@ export const useTopTracks = (params: TopTracksParams) => {
   return useQuery(queryKeys.topTracks(params), async (): Promise<Paging<Track>> => {
     const { limit = 50 } = params;
 
-    const response = await apiSpotify.get(`/me/top/tracks?limit=${limit}`, {
-      headers: {
-        Authorization: `Bearer ${supabase.auth.session()!.provider_token}`,
-      },
-    });
+    const response = await apiSpotify.get(`/me/top/tracks?limit=${limit}`);
 
     return response.data;
   });
