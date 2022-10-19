@@ -8,11 +8,7 @@ import { queryKeys } from '../query-keys';
 
 export const useGetItem = (id: string, type: string) => {
   return useQuery(queryKeys.getItem(id, type), async (): Promise<Album | Artist | Track> => {
-    const response = await apiSpotify.get(`/${type}s/${id}`, {
-      headers: {
-        Authorization: `Bearer ${supabase.auth.session()!.provider_token}`,
-      },
-    });
+    const response = await apiSpotify.get(`/${type}s/${id}`);
     return response.data;
   });
 };

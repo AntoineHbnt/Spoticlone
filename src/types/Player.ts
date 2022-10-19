@@ -1,6 +1,6 @@
 import { CurrentlyPlaying } from './CurrentlyPlaying';
 import { Device } from './Device';
-
+/* 
 export interface Player {
   devices: {
     activeDevice: Device;
@@ -104,3 +104,4 @@ export const defaultPlaybackState: Spotify.PlaybackState = {
   restrictions: defaultPlaybackRestrictions,
   track_window: defaultTrackWindow,
 };
+ */

@@ -1,15 +1,13 @@
 import { supabase } from '../supabaseClient';
 
 export const signInWithSpotify = async () => {
-  const { user, session, error } = await supabase.auth.signIn(
-    {
-      provider: 'spotify',
-    },
-    {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'spotify',
+    options: {
       scopes:
         'user-read-email user-read-private user-top-read user-modify-playback-state user-read-playback-state',
-    }
-  );
+    },
+  });
 };
 
 export const signOut = async () => {
@@ -17,6 +15,6 @@ export const signOut = async () => {
 };
 
 export const getUser = async () => {
-  const user = supabase.auth.user();
+  const user = supabase.auth.getUser();
   return user;
 };

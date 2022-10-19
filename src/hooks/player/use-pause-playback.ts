@@ -6,16 +6,7 @@ import { queryKeys } from '../query-keys';
 export const usePausePlayback = () => {
   const { mutateAsync, isLoading } = useMutation(
     queryKeys.pausePlayback(),
-    () =>
-      apiSpotify.put(
-        '/me/player/pause',
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${supabase.auth.session()?.provider_token}`,
-          },
-        }
-      ),
+    () => apiSpotify.put('/me/player/pause'),
     {
       onSuccess: () => {
         console.log('Playback paused');

@@ -98,11 +98,15 @@ export const defaultTrack: Track = {
   disc_number: 0,
   duration_ms: 0,
   explicit: false,
+  external_urls: {
+    spotify: '',
+  },
+  external_ids: {
+    isrc: '',
+  },
   href: '',
   id: '',
-  items: [],
   is_local: false,
-  is_playable: false,
   name: '',
   popularity: 0,
   preview_url: '',

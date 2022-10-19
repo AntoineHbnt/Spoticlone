@@ -5,13 +5,13 @@ import { Track, TrackSimplified } from '../../types/Track';
 import { TrackListRow } from '../tracklist-row/tracklist-row';
 import { Card } from './card';
 
-export interface ComponentShelfprops {
+export interface ComponentShelfProps {
   title: string;
   link?: string;
   data: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
 }
 
-export const ComponentShelf = (props: ComponentShelfprops) => {
+export const ComponentShelf = (props: ComponentShelfProps) => {
   const { title, data, link = '' } = props;
   const element = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(0);

@@ -3,21 +3,24 @@ import { SetStateAction } from 'react';
 import { useGetItem } from '../../../hooks/content/use-get-item';
 import { Content } from '../../../components/Item/content';
 import { Header } from '../../../components/Item/header';
+import { Track as TrackType } from '../../../types/Track';
 
 export const Track = () => {
   const { id } = useParams<{ id: string }>();
   const { data } = useGetItem(id!, 'track');
   const [vibrantColor, setVibrantColor] = useState<string>('#000000');
 
+  const track = data as TrackType;
+
   const handleColor = async () => {
-    let v = await new Vibrant(data.album.images[0].url).getPalette();
+    let v = await new Vibrant(track!.album.images[0].url).getPalette();
     setVibrantColor(v.Vibrant!.getHex());
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!track) return <div>Loading...</div>;
 
   handleColor();
-  const { type, name, album, artists, duration_ms } = data;
+  const { type, name, album, artists, duration_ms } = track;
 
   return (
     <div id="track-container" className="flex h-full w-full flex-col">
@@ -30,7 +33,7 @@ export const Track = () => {
         duration={duration_ms}
         color={vibrantColor}
       />
-      <Content color={vibrantColor} itemData={data} />
+      <Content color={vibrantColor} itemData={track} />
     </div>
   );
 };

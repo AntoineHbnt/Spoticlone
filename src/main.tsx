@@ -11,7 +11,7 @@ import { queryKeys } from './hooks/query-keys';
 
 export const queryClient = new QueryClient();
 
-supabase.auth.onAuthStateChange((event, session) => {
+supabase.auth.onAuthStateChange(() => {
   void queryClient.invalidateQueries();
 });
 

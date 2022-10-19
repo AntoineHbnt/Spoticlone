@@ -12,6 +12,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.0.2",
     "@tanstack/react-query": "^4.10.1",
     "@types/spotify-api": "^0.0.19",
     "@vibrant/types": "^3.2.1-alpha.1",
