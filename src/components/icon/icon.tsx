@@ -1,11 +1,16 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { ExplicitIcon } from './icons/explicit';
+import HomeEmpty from './icons/home-empty';
+import HomeFulfilled from './icons/home-fulfilled';
 import ItemWithoutSrc from './icons/item-without-src';
 import LibraryEmpty from './icons/library-empty';
 import LibraryFulfilled from './icons/library-fulfilled';
 import Pause from './icons/pause';
 import Play from './icons/play';
+import SearchEmpty from './icons/search-empty';
+import SearchFulfilled from './icons/search-fulfilled';
 import SpotifyIcon from './icons/spotify';
+import SpotifyBanner from './icons/spotify-banner';
 
 export enum IconSVG {
   Spotify = 'spotify',
@@ -18,6 +23,11 @@ export enum IconSVG {
   YourEpisodesIcon = 'YourEpisodesIcon',
   Explicit = 'Explicit',
   ItemWithoutSrc = 'ItemWithoutSrc',
+  HomeEmpty = 'HomeEmpty',
+  HomeFulfilled = 'HomeFulfilled',
+  SearchEmpty = 'SearchEmpty',
+  SearchFulfilled = 'SearchFulfilled',
+  SpotifyBanner = 'SpotifyBanner',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -80,6 +90,21 @@ export const Icon = (props: IconProps) => {
     ),
     [IconSVG.ItemWithoutSrc]: (
       <ItemWithoutSrc className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.HomeEmpty]: (
+      <HomeEmpty className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.HomeFulfilled]: (
+      <HomeFulfilled className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.SearchEmpty]: (
+      <SearchEmpty className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.SearchFulfilled]: (
+      <SearchFulfilled className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.SpotifyBanner]: (
+      <SpotifyBanner className={className} width={width} height={height} fill={fill} />
     ),
   };
 

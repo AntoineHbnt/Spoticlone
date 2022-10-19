@@ -1,12 +1,27 @@
 import { IconSVG } from './components/icon/icon';
 
-export const navigation = [
+export const mainNavigation = [
+  {
+    icon: IconSVG.HomeEmpty,
+    label: 'Home',
+    path: '/',
+    activeIcon: IconSVG.HomeFulfilled,
+  },
+  {
+    icon: IconSVG.SearchEmpty,
+    label: 'Search',
+    path: '/search',
+    activeIcon: IconSVG.SearchFulfilled,
+  },
   {
     icon: IconSVG.LibraryEmpty,
     label: 'Your Library',
     path: '/collection/playlists',
     activeIcon: IconSVG.LibraryFulfilled,
   },
+];
+
+export const secondNavigation = [
   {
     icon: IconSVG.CreatePlaylistIcon,
     label: 'Create Playlist',

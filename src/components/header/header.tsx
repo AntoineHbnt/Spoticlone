@@ -10,26 +10,25 @@ export const Header = () => {
   const navigate = useNavigate();
   const { data: session, status } = useSession();
   const homeActive = location.pathname === '/';
+  const ref = useRef<HTMLElement>(null);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     value && navigate(`/search/${value}`);
   };
 
+  console.log(ref);
+
   if (status === 'loading') {
     return <div>Loading...</div>;
   }
 
   return (
-    <header className="flex w-full items-center justify-between pl-2">
-      <Icon svg={IconSVG.Spotify} fill="#fff" width={32} />
-      <div className="flex gap-4">
-        <NavLink to="/">
-          <Icon
-            name={`home-5-${homeActive ? 'fill' : 'line'}`}
-            className="ri-xl flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-background-base text-white"
-          />
-        </NavLink>
+    <header
+      ref={ref}
+      className="absolute inset-0 z-10 flex h-fit w-full items-center justify-between p-4"
+    >
+      <div className="flex h-12 gap-4">
         <Input
           icon="search-line"
           onChange={handleSearch}
@@ -38,9 +37,9 @@ export const Header = () => {
       </div>
       <button
         onClick={signOut}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-background-base"
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-background-base hover:bg-[#282828]"
       >
-        <Avatar src={session!.user!.user_metadata.avatar_url} alt="avatar" />
+        <Avatar src={session!.user!.user_metadata.avatar_url} size={28} alt="avatar" />
       </button>
     </header>
   );
