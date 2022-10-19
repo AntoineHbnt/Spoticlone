@@ -44,13 +44,17 @@ export const TrackListRow = (props: TrackListRowProps) => {
           </button>
         </div>
         <div className="ml-4">
-          <p className={`text-base ${isPlaying ? 'text-spotify-green' : 'text-white'}`}>
+          <p
+            className={`text-base ${isPlaying ? 'text-spotify-green' : 'text-white'} line-clamp-1`}
+          >
             {track.name}
           </p>
-          <p className="flex items-center text-sm text-gray-400">
+          <div className="flex items-center">
             {track.explicit && <ExplicitIcon className="mr-2" />}
-            {track.artists.map((artist) => artist.name).join(', ')}
-          </p>
+            <p className="text-sm text-gray-400 line-clamp-1">
+              {track.artists.map((artist) => artist.name).join(', ')}
+            </p>
+          </div>
         </div>
       </div>
       <div className="flex items-center">
