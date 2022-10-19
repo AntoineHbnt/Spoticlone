@@ -2,25 +2,27 @@ import axios from 'axios';
 import { PlayBackContext } from '../../context/PlaybackContext';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';
+import { Album } from '../../types/Album';
+import { Track } from '../../types/Track';
 import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
 
 export interface PlayButtonProps {
   className?: string;
   iconWidth?: number;
-  itemData: any;
+  data: Track | Album;
+  uri: string;
+  offset?: number;
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { className, iconWidth = 24, itemData } = props;
+  const { className, iconWidth = 24, data, offset = 0, uri } = props;
   const playback = useContext(PlayBackContext);
-  const itemUri: string = itemData.type === 'track' ? itemData.album.uri : itemData.uri;
-  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === itemUri;
+  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === uri;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
 
-  const { mutateAsync: startPlayback } = useStartPlayback(itemUri, itemData.track_number - 1, 0);
-
+  const { mutateAsync: startPlayback } = useStartPlayback(uri, offset, 0);
   const { mutateAsync: pausePlayback } = usePausePlayback();
 
   useEffect(() => {

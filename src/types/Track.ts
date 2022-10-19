@@ -2,6 +2,16 @@ import { AlbumSimplified } from './Album';
 import { ArtistSimplified } from './Artist';
 import { ExternalIds, ExternalUrls } from './Misc';
 
+export interface AlbumTracks {
+  href: string;
+  items: Track[];
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+
 export interface Track {
   album: AlbumSimplified;
   artists: ArtistSimplified[];

@@ -1,7 +1,7 @@
 import { Artist, ArtistSimplified } from './Artist';
 import { Image } from './Image';
 import { ExternalUrls } from './Misc';
-import { Track } from './Track';
+import { AlbumTracks, Track } from './Track';
 
 export interface AlbumPage {
   album: Album;
@@ -31,7 +31,7 @@ export interface Album {
   release_date: string;
   release_date_precision: ReleaseDatePrecision;
   total_tracks: number;
-  tracks: Track;
+  tracks: AlbumTracks;
   type: string;
   uri: string;
 }
