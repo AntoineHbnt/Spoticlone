@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { ExplicitIcon } from './icons/explicit';
+import ItemWithoutSrc from './icons/item-without-src';
 import LibraryEmpty from './icons/library-empty';
 import LibraryFulfilled from './icons/library-fulfilled';
 import Pause from './icons/pause';
@@ -16,6 +17,7 @@ export enum IconSVG {
   LikedSongIcon = 'LikedSongIcon',
   YourEpisodesIcon = 'YourEpisodesIcon',
   Explicit = 'Explicit',
+  ItemWithoutSrc = 'ItemWithoutSrc',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -75,6 +77,9 @@ export const Icon = (props: IconProps) => {
     ),
     [IconSVG.Explicit]: (
       <ExplicitIcon className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.ItemWithoutSrc]: (
+      <ItemWithoutSrc className={className} width={width} height={height} fill={fill} />
     ),
   };
 
