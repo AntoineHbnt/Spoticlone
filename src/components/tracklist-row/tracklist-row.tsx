@@ -6,6 +6,7 @@ import { Track } from '../../types/Track';
 import { durationParser } from '../../utils/misc/duration';
 import { Icon } from '../icon/icon';
 import { ExplicitIcon } from '../icon/icons/explicit';
+import { Thumbnail } from '../thumbnail/thumbnail';
 import './tracklist-row.styles.scss';
 
 export interface TrackListRowProps {
@@ -35,7 +36,7 @@ export const TrackListRow = (props: TrackListRowProps) => {
     >
       <div className="flex items-center">
         <div className="relative h-10 w-10 shrink-0">
-          <img className="h-full w-full" src={track.album.images[0].url} alt={track.album.name} />
+          <Thumbnail src={track.album.images[0].url} alt={track.album.name} />
           <button
             onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
             className="absolute inset-0 z-10 flex h-full w-full items-center justify-center opacity-0"
