@@ -4,6 +4,7 @@ import { Album } from './pages/content/album/album';
 import { Track } from './pages/content/track/track';
 import { Home } from './pages/home/home';
 import { Playlist } from './components/playlist/playlist';
+import { Search } from './pages/search/search';
 
 export const routes: RouteObject[] = [
   {
@@ -25,5 +26,9 @@ export const routes: RouteObject[] = [
   {
     path: '/artist/:id',
     element: <Artist />,
+  },
+  {
+    path: '/search/:query',
+    element: <Search />,
   },
 ];

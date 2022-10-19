@@ -9,7 +9,7 @@ import { PlayBackContextProvider } from './context/PlaybackContext';
 import { supabase } from './supabaseClient';
 import { queryKeys } from './hooks/query-keys';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 supabase.auth.onAuthStateChange((event, session) => {
   void queryClient.invalidateQueries();
