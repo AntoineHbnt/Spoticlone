@@ -1,4 +1,4 @@
-import { Track } from '../../types/Track';
+import { Track, TrackSimplified } from '../../types/Track';
 
 export const durationParser = (duration: number, secondaryType?: boolean) => {
   const minutes = Math.floor(duration / 60000);
@@ -8,7 +8,7 @@ export const durationParser = (duration: number, secondaryType?: boolean) => {
     : `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-export const albumDurationParser = (tracks: Track[]) => {
+export const albumDurationParser = (tracks: Track[] | TrackSimplified[]) => {
   let duration = 0;
   tracks.forEach((track) => {
     duration += track.duration_ms;

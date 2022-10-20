@@ -4,7 +4,7 @@ import { ExternalIds, ExternalUrls } from './Misc';
 
 export interface AlbumTracks {
   href: string;
-  items: Track[];
+  items: TrackSimplified[];
   limit: number;
   next: string;
   offset: number;

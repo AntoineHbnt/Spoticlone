@@ -17,8 +17,6 @@ export const Header = () => {
     value && navigate(`/search/${value}`);
   };
 
-  console.log(ref);
-
   if (status === 'loading') {
     return <div>Loading...</div>;
   }

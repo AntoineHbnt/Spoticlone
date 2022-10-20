@@ -10,13 +10,14 @@ import { IconSVG } from '../icon/icon';
 export interface PlayButtonProps {
   className?: string;
   iconWidth?: number;
+  width?: number;
   data: Track | Album;
   uri: string;
   offset?: number;
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { className, iconWidth = 24, data, offset = 0, uri } = props;
+  const { className, iconWidth = 24, data, offset = 0, uri, width = 48 } = props;
   const playback = useContext(PlayBackContext);
   const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === uri;
 
@@ -32,7 +33,8 @@ export const PlayButton = (props: PlayButtonProps) => {
   return (
     <button
       onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
-      className={`flex h-12 w-12 shrink-0 cursor-default items-center justify-center rounded-full bg-spotify-green drop-shadow-[0_8px_8px_rgba(0,0,0,0.3)] ${className}`}
+      style={{ width: `${width}px` }}
+      className={`flex aspect-square shrink-0 cursor-default items-center justify-center rounded-full bg-spotify-green drop-shadow-[0_8px_8px_rgba(0,0,0,0.3)] ${className}`}
     >
       {isPlaying ? (
         <Icon svg={IconSVG.Pause} fill="#000" width={iconWidth} />

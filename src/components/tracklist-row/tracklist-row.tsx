@@ -7,21 +7,24 @@ import { durationParser } from '../../utils/misc/duration';
 import { Icon } from '../icon/icon';
 import { ExplicitIcon } from '../icon/icons/explicit';
 import { Thumbnail } from '../thumbnail/thumbnail';
+import trackPlayingGif from '../../assets/track-playing.gif';
 import './tracklist-row.styles.scss';
 
 export interface TrackListRowProps {
   track: Track;
+  index?: number;
 }
 
 export const TrackListRow = (props: TrackListRowProps) => {
-  const { track } = props;
+  const { track, index = 0 } = props;
+
   const playback = useContext(PlayBackContext);
-  const itemUri: string = track.album.uri;
-  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === itemUri;
+  const uri: string = track.album.uri;
+  const isPlayingCondition: boolean = playback?.is_playing && playback?.item?.id === track.id;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
 
-  const { mutateAsync: startPlayback } = useStartPlayback(itemUri, track.track_number - 1, 0);
+  const { mutateAsync: startPlayback } = useStartPlayback(uri, track.track_number - 1, 0);
   const { mutateAsync: pausePlayback } = usePausePlayback();
 
   useEffect(() => {
@@ -29,20 +32,36 @@ export const TrackListRow = (props: TrackListRowProps) => {
   }, [playback]);
 
   return (
-    <div
-      className={`trackListRow flex w-full items-center justify-between rounded p-2 pr-4 ${
-        isPlaying && 'active'
-      }`}
-    >
+    <div className={`trackListRow flex w-full items-center justify-between rounded p-2 pr-4`}>
       <div className="flex items-center">
-        <div className="relative h-10 w-10 shrink-0">
-          <Thumbnail src={track.album.images[0].url} alt={track.album.name} />
-          <button
-            onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
-            className="absolute inset-0 z-10 flex h-full w-full items-center justify-center opacity-0"
-          >
-            <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
-          </button>
+        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
+          {index === 0 ? (
+            <>
+              <Thumbnail src={track.album.images[0].url} alt={track.album.name} />
+              <button
+                onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
+                className="thumbnail-button absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-[rgb(0,0,0,0.5)] opacity-0"
+              >
+                <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="index">
+                {isPlaying ? (
+                  <img src={trackPlayingGif} width="14" height="14" alt="playing song" />
+                ) : (
+                  <span className="text-[#b3b3b3]">{index}</span>
+                )}
+              </div>
+              <button
+                onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
+                className="index-button absolute inset-0 z-10 flex h-full w-full items-center justify-center opacity-0"
+              >
+                <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
+              </button>
+            </>
+          )}
         </div>
         <div className="ml-4">
           <p

@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
+import Duration from './icons/duration';
 import { ExplicitIcon } from './icons/explicit';
 import HomeEmpty from './icons/home-empty';
 import HomeFulfilled from './icons/home-fulfilled';
@@ -28,6 +29,7 @@ export enum IconSVG {
   SearchEmpty = 'SearchEmpty',
   SearchFulfilled = 'SearchFulfilled',
   SpotifyBanner = 'SpotifyBanner',
+  Duration = 'Duration',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -105,6 +107,9 @@ export const Icon = (props: IconProps) => {
     ),
     [IconSVG.SpotifyBanner]: (
       <SpotifyBanner className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.Duration]: (
+      <Duration className={className} width={width} height={height} fill={fill} />
     ),
   };
 
