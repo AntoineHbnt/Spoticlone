@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { IconSVG } from '../icon/icon';
-import { NavbarProps, Sidebar } from './sidebar';
+import { Sidebar } from './sidebar';
 
 export default {
   title: 'Components/Sidebar',
@@ -18,9 +18,9 @@ export default {
   },
 } as ComponentMeta<typeof Sidebar>;
 
-const Template: ComponentStory<typeof Sidebar> = (args: NavbarProps) => (
+const Template: ComponentStory<typeof Sidebar> = () => (
   <div className="h-screen w-full">
-    <Sidebar {...args} />
+    <Sidebar />
   </div>
 );
 
