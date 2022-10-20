@@ -7,7 +7,7 @@ import { Followers } from './User';
 import { ExternalUrls } from './Misc';
 import { PlaylistTracksRef, SimplifiedPlaylist } from './Playlist';
 import { PublicUser } from './PublicUser';
-import { Track, TrackSimplified } from './Track';
+import { AlbumTracks, Track, TrackSimplified } from './Track';
 
 export const defaultImage: Image = {
   height: 0,
@@ -114,6 +114,17 @@ export const defaultTrack: Track = {
   type: '',
   uri: '',
 };
+
+export const defaultAlbumTracks: AlbumTracks = {
+  href: '',
+  items: [],
+  limit: 0,
+  next: '',
+  offset: 0,
+  previous: '',
+  total: 0,
+};
+
 export const defaultTrackSimplified: TrackSimplified = {
   artists: [],
   available_markets: [],
@@ -149,7 +160,7 @@ export const defaultAlbum: Album = {
   release_date: '',
   release_date_precision: 'year',
   total_tracks: 0,
-  tracks: defaultTrack,
+  tracks: defaultAlbumTracks,
   type: '',
   uri: '',
 };

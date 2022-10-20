@@ -1,9 +1,8 @@
 import { Header } from './components/header/header';
-import { IconSVG } from './components/icon/icon';
 import { Protected } from './components/protected/protected';
 import { Sidebar } from './components/sidebar/sidebar';
 import { useSession } from './hooks/auth/use-session';
-import { navigation, noLayoutNavigation } from './navigation';
+import { noLayoutNavigation } from './navigation';
 import { Login } from './pages/login';
 import { routes } from './router';
 
@@ -13,25 +12,27 @@ const App = () => {
   const connectedUser = !noLayoutNavigation.some((path) => location.pathname.includes(path));
 
   return (
-    <div className="flex h-screen w-screen flex-col gap-2 bg-black p-2">
-      {session && connectedUser && <Header />}
-      <div className="flex h-[calc(100%_-_64px)] w-full gap-2">
+    <div className="flex-co flex h-screen w-screen">
+      <div className="flex h-full w-full">
         {session && connectedUser && (
           <div className="w-60 shrink-0">
-            <Sidebar navigation={navigation} />
+            <Sidebar />
           </div>
         )}
-        <div className="h-full flex-1 overflow-hidden rounded-md bg-background-base">
-          <main className="h-full w-full max-w-[1955px] overflow-y-auto">
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route element={<Protected />}>
-                {routes.map((route) => (
-                  <Route key={route.path} path={route.path} element={route.element} />
-                ))}
-              </Route>
-            </Routes>
-          </main>
+        <div className="relative w-full">
+          {session && connectedUser && <Header />}
+          <div className="h-full flex-1 overflow-hidden bg-background-base">
+            <main className="h-full w-full max-w-[1955px] overflow-y-auto">
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route element={<Protected />}>
+                  {routes.map((route) => (
+                    <Route key={route.path} path={route.path} element={route.element} />
+                  ))}
+                </Route>
+              </Routes>
+            </main>
+          </div>
         </div>
       </div>
     </div>
