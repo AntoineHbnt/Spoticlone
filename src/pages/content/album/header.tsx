@@ -20,20 +20,22 @@ export const Header = (props: HeaderProps) => {
 
   const renderArtists = () => {
     return (
-      <>
-        <Thumbnail
-          src={artist!.images[0].url}
-          alt={artist!.name}
-          className="mr-1 w-6 rounded-full"
-        />
-        <NavLink
-          key={`link-${artist!.id}`}
-          to={`/artist/${artist!.id}`}
-          className="font-bold hover:underline"
-        >
-          {artist!.name}
-        </NavLink>
-      </>
+      artist && (
+        <>
+          <Thumbnail
+            src={artist!.images[0].url}
+            alt={artist!.name}
+            className="mr-1 w-6 rounded-full"
+          />
+          <NavLink
+            key={`link-${artist!.id}`}
+            to={`/artist/${artist!.id}`}
+            className="font-bold hover:underline"
+          >
+            {artist!.name}
+          </NavLink>
+        </>
+      )
     );
   };
 
