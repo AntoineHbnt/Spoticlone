@@ -1,9 +1,9 @@
 import { useVibrant } from '../../../hooks/misc/use-vibrant';
 import { Album } from '../../../types/Album';
-import { Artist } from '../../../types/Artist';
-import { Track } from '../../../types/Track';
 import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
+import { ArtistSimplified } from '../../../types/Artist';
+import { useArtist } from '../../../hooks/content/use-artist';
 
 export interface HeaderProps {
   data: Album;
@@ -12,22 +12,33 @@ export interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   const { data } = props;
   const { type, name, images, artists, release_date, tracks } = props.data;
+  const { data: artist } = useArtist(artists[0].id);
   const { data: color } = useVibrant(images[0].url);
   const image = images[1].url;
 
-  const renderArtists = () =>
-    artists.map((artist: any, index: number) => {
-      <NavLink
-        key={`link-${artist.id}-${index}`}
-        to={`/artist/${artist.id}`}
-        className="font-bold hover:underline"
-      >
-        {artist.name}
-      </NavLink>;
-    });
+  console.log(data);
 
-  const renderTimeInfo = (info: string) => {
-    return <span className="before:mx-2 before:text-lg before:content-['•']">{info}</span>;
+  const renderArtists = () => {
+    return (
+      <>
+        <Thumbnail
+          src={artist!.images[0].url}
+          alt={artist!.name}
+          className="mr-1 w-6 rounded-full"
+        />
+        <NavLink
+          key={`link-${artist!.id}`}
+          to={`/artist/${artist!.id}`}
+          className="font-bold hover:underline"
+        >
+          {artist!.name}
+        </NavLink>
+      </>
+    );
+  };
+
+  const renderInfo = (info: string) => {
+    return <span className="before:mx-1 before:text-lg before:content-['•']">{info}</span>;
   };
 
   return (
@@ -40,9 +51,9 @@ export const Header = (props: HeaderProps) => {
         <h2 className="text-xs font-bold text-white">{type.toUpperCase()}</h2>
         <h1 className="truncate text-2xl font-bold text-white">{name}</h1>
         <div className="mt-2 flex h-6 items-center text-sm font-normal text-white">
-          <>{type !== 'artist' && renderArtists()}</>
-          {renderTimeInfo(release_date.split('-')[0])}
-          {renderTimeInfo(albumDurationParser(tracks.items))}
+          <>{renderArtists()}</>
+          {renderInfo(release_date.split('-')[0])}
+          {renderInfo(albumDurationParser(tracks.items))}
         </div>
       </div>
     </div>

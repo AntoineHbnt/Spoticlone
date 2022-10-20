@@ -17,7 +17,7 @@ export interface Copyrights {
 }
 export interface Album {
   album_type: AlbumType;
-  artists: Artist[];
+  artists: ArtistSimplified[];
   available_markets: string[];
   copyrights: Copyrights[];
   external_urls: ExternalUrls;

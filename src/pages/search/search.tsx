@@ -25,7 +25,6 @@ export const Search = () => {
 
   const { artists, tracks, albums } = searchResult!;
   const noResult = !artists?.items.length && !tracks?.items.length && !albums?.items.length;
-  console.log(searchResult);
 
   return searchResult && !noResult ? (
     <div className="flex flex-col gap-8 p-6">

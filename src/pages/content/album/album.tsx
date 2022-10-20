@@ -17,7 +17,7 @@ export const Album = () => {
   return (
     <div className="flex w-full flex-col">
       <Header data={album as AlbumType} />
-      <Content data={album} className="px-8">
+      <Content data={album} className="px-6 lg:px-8">
         <div className="mb-2 flex w-full border-b border-[hsla(0,0%,100%,.1)] p-2 text-xs text-[#b3b3b3]">
           <span className="mr-4 flex w-10 items-center justify-center">#</span>
           <span>TITLE</span>
