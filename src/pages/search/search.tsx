@@ -1,9 +1,5 @@
 import { ComponentShelf } from '../../components/component-shelf/component-shelf';
-import { TrackListRow } from '../../components/tracklist-row/tracklist-row';
 import { useSearchItem } from '../../hooks/content/use-search-item';
-import { queryKeys } from '../../hooks/query-keys';
-import { queryClient } from '../../main';
-import { SearchFromAPI } from '../../types/Search';
 
 export const Search = () => {
   const { query } = useParams<{ query: string }>();

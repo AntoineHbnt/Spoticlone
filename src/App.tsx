@@ -22,7 +22,7 @@ const App = () => {
         <div className="relative w-full">
           {session && connectedUser && <Header />}
           <div className="h-full flex-1 overflow-hidden bg-background-base">
-            <main className="h-full w-full max-w-[1955px] overflow-y-auto">
+            <main className="h-full w-full overflow-y-auto">
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route element={<Protected />}>

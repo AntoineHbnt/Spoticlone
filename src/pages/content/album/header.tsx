@@ -15,14 +15,6 @@ export const Header = (props: HeaderProps) => {
   const { data: color } = useVibrant(images[0].url);
   const image = images[1].url;
 
-  console.log(data);
-
-  const durationParser = (duration: number) => {
-    let minutes = Math.floor(duration / 60000);
-    let seconds = parseInt(((duration % 60000) / 1000).toFixed(0));
-    return `${minutes} min ${seconds < 10 ? '0' : ''}${seconds} sec`;
-  };
-
   const renderArtists = () =>
     artists.map((artist: any, index: number) => {
       <NavLink

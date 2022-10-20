@@ -2,9 +2,16 @@
   &:hover,
   &.active {
     background-color: hsla(0, 0%, 100%, 0.1);
-    button {
+    .thumbnail-button {
       opacity: 1;
-      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  &:hover {
+    .index-button {
+      opacity: 1;
+    }
+    .index {
+      display: none;
     }
   }
 }
