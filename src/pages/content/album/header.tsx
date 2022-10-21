@@ -16,8 +16,6 @@ export const Header = (props: HeaderProps) => {
   const { data: color } = useVibrant(images[0].url);
   const image = images[1].url;
 
-  console.log(data);
-
   const renderArtists = () => {
     return (
       artist && (

@@ -71,8 +71,14 @@ export const TrackListRow = (props: TrackListRowProps) => {
           </p>
           <div className="flex items-center">
             {track.explicit && <ExplicitIcon className="mr-2" />}
-            <p className="text-sm text-gray-400 line-clamp-1">
-              {track.artists.map((artist) => artist.name).join(', ')}
+            <p className="text-sm text-gray-400 line-clamp-1 hover:underline">
+              {track.artists.map((artist) => {
+                return (
+                  <Link key={artist.id} to={`../artist/${artist.id}`}>
+                    {artist.name}
+                  </Link>
+                );
+              })}
             </p>
           </div>
         </div>
