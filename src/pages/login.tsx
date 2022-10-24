@@ -9,7 +9,7 @@ export const Login = () => {
     return <div>Loading...</div>;
   }
 
-  if (session !== null) {
+  if (session?.provider_token) {
     return <Navigate to="/" replace />;
   }
 

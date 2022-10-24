@@ -1,3 +1,4 @@
+import { queryClient } from '../main';
 import { supabase } from '../supabaseClient';
 
 export const signInWithSpotify = async () => {
@@ -11,12 +12,13 @@ export const signInWithSpotify = async () => {
     },
   });
 
-  console.log(data, error);
   sessionStorage.setItem('session', JSON.stringify(data));
 };
 
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
+  localStorage.clear();
+  location.reload();
 };
 
 export const getUser = async () => {
