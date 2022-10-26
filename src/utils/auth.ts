@@ -1,4 +1,3 @@
-import { queryClient } from '../main';
 import { supabase } from '../supabaseClient';
 
 export const signInWithSpotify = async () => {
