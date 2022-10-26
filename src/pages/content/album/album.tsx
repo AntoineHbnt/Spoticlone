@@ -4,16 +4,46 @@ import { TrackListRow } from '../../../components/tracklist-row/tracklist-row';
 import { Track } from '../../../types/Track';
 import { Icon, IconSVG } from '../../../components/icon/icon';
 import { ComponentShelf } from '../../../components/component-shelf/component-shelf';
-import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
-import { queryClient } from '../../../main';
+import { redirect, useLoaderData } from 'react-router-dom';
 import { queryKeys } from '../../../hooks/query-keys';
-import { useAlbum } from '../../../hooks/content/use-album';
-import { defaultArtist } from '../../../types/Defaults';
+import { getAlbumById } from '../../../api/album';
+import { QueryClient, useQuery } from '@tanstack/react-query';
+import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
+import { queryClient } from '../../../router';
+
+const albumQuery = (id: string) => ({
+  queryKey: queryKeys.album(id),
+  queryFn: async () => {
+    const album = await getAlbumById(id);
+    if (!album) {
+      throw new Response('', {
+        status: 404,
+        statusText: 'Not Found',
+      });
+    }
+    return album;
+  },
+});
+
+export const loader =
+  (queryClient: any) =>
+  async ({ params }: any) => {
+    const query = albumQuery(params.id);
+    return queryClient.getQueryData(query) ?? (await queryClient.fetchQuery(query));
+  };
 
 export const Album = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data: album, status } = useAlbum(id!);
-  const { data: artistAlbums } = useArtistAlbums(album?.artists[0].id!);
+  const params = useParams<{ id: string }>();
+
+  const { data: album, status, refetch: albumRefetch } = useQuery(albumQuery(params.id!));
+  const { data: artistAlbums, refetch: artistAlbumsRefetch } = useArtistAlbums(
+    album!.artists[0].id!
+  );
+
+  useEffect(() => {
+    albumRefetch();
+    artistAlbumsRefetch();
+  }, [params]);
 
   if (status === 'loading') return <div>Loading...</div>;
 

@@ -10,7 +10,6 @@ export interface HeaderProps {
 }
 
 export const Header = (props: HeaderProps) => {
-  const { data } = props;
   const { type, name, images, artists, release_date, tracks } = props.data;
   const { data: artist } = useArtist(artists[0].id);
   const { data: color } = useVibrant(images[0].url);

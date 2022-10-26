@@ -8,9 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PlayBackContextProvider } from './context/PlaybackContext';
 import { supabase } from './supabaseClient';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { router } from './router';
-
-export const queryClient = new QueryClient();
+import { queryClient, router } from './router';
 
 supabase.auth.onAuthStateChange(() => {
   void queryClient.invalidateQueries();

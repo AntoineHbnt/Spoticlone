@@ -4,10 +4,13 @@ import { Track } from './pages/content/track/track';
 import { Home } from './pages/home/home';
 import { Playlist } from './components/playlist/playlist';
 import { Search } from './pages/search/search';
-import { Album } from './pages/content/album/album';
+import { Album, loader as albumLoader } from './pages/content/album/album';
 import { Protected } from './components/protected/protected';
 import App from './App';
 import { Login } from './pages/login';
+import { QueryClient } from '@tanstack/react-query';
+
+export const queryClient = new QueryClient();
 
 export const routes: RouteObject[] = [
   {
@@ -36,6 +39,7 @@ export const router = createBrowserRouter([
           {
             path: '/album/:id',
             element: <Album />,
+            loader: albumLoader(queryClient),
           },
           {
             path: '/track/:id',
