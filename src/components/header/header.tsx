@@ -6,10 +6,8 @@ import { Icon } from '../icon/icon';
 import { IconSVG } from '../icon/icon';
 
 export const Header = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const { data: session, status } = useSession();
-  const homeActive = location.pathname === '/';
   const ref = useRef<HTMLElement>(null);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
