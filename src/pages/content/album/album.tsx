@@ -10,40 +10,13 @@ import { getAlbumById } from '../../../api/album';
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
 import { queryClient } from '../../../router';
-
-const albumQuery = (id: string) => ({
-  queryKey: queryKeys.album(id),
-  queryFn: async () => {
-    const album = await getAlbumById(id);
-    if (!album) {
-      throw new Response('', {
-        status: 404,
-        statusText: 'Not Found',
-      });
-    }
-    return album;
-  },
-});
-
-export const loader =
-  (queryClient: any) =>
-  async ({ params }: any) => {
-    const query = albumQuery(params.id);
-    return queryClient.getQueryData(query) ?? (await queryClient.fetchQuery(query));
-  };
+import { useAlbum } from '../../../hooks/content/use-album';
 
 export const Album = () => {
   const params = useParams<{ id: string }>();
 
-  const { data: album, status, refetch: albumRefetch } = useQuery(albumQuery(params.id!));
-  const { data: artistAlbums, refetch: artistAlbumsRefetch } = useArtistAlbums(
-    album!.artists[0].id!
-  );
-
-  useEffect(() => {
-    albumRefetch();
-    artistAlbumsRefetch();
-  }, [params]);
+  const { data: album, status } = useAlbum(params.id!);
+  const { data: artistAlbums } = useArtistAlbums(album ? album!.artists[0].id! : '');
 
   if (status === 'loading') return <div>Loading...</div>;
 

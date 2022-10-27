@@ -7,9 +7,9 @@ export const queryKeys = {
 
   topTracks: (args: TopTracksParams) => ['topTracks'],
   topArtists: (args: TopArtistsParams) => ['topArtists'],
-  artist: (id: string) => ['artist'],
-  artistAlbums: (id: string) => ['artistAlbums'],
-  album: (id: string) => ['album'],
+  artist: (id: string) => ['artist', id],
+  artistAlbums: (id: string) => ['artistAlbums', id],
+  album: (id: string) => ['album', id],
   getItem: (id: string, type: string) => ['getItem', id, type],
   searchItems: (args: searchItemParams) => ['searchItems'],
   getActiveDevice: () => ['getActiveDevice'],

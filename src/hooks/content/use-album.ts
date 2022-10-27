@@ -8,7 +8,7 @@ import { apiSpotify } from '../../utils/axios/axios';
 import { queryKeys } from '../query-keys';
 
 export const useAlbum = (id: string) => {
-  return useQuery(queryKeys.album(id), () => getAlbumById(id), {
+  return useQuery(queryKeys.album(id), (): Promise<Album> => getAlbumById(id), {
     enabled: !!id,
   });
 };
