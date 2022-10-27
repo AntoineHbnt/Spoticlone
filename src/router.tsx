@@ -4,7 +4,7 @@ import { Track } from './pages/content/track/track';
 import { Home } from './pages/home/home';
 import { Playlist } from './components/playlist/playlist';
 import { Search } from './pages/search/search';
-import { Album, loader as albumLoader } from './pages/content/album/album';
+import { Album } from './pages/content/album/album';
 import { Protected } from './components/protected/protected';
 import App from './App';
 import { Login } from './pages/login';
@@ -39,7 +39,6 @@ export const router = createBrowserRouter([
           {
             path: '/album/:id',
             element: <Album />,
-            loader: albumLoader(queryClient),
           },
           {
             path: '/track/:id',
