@@ -1,6 +1,6 @@
 import { mainNavigation, secondNavigation } from '../../navigation';
 import { Icon, IconSVG } from '../icon/icon';
-import { NavItem, NavItemProps } from './nav-item';
+import { NavItem } from './nav-item';
 
 export const Sidebar = () => {
   return (

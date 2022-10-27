@@ -2,7 +2,7 @@ import { PlayBackContext } from '../../context/PlaybackContext';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';
 import { PlayButton } from '../play-button/play-button';
-import { Thumbnail, ThumbnailProps } from '../thumbnail/thumbnail';
+import { Thumbnail } from '../thumbnail/thumbnail';
 import { Artists } from './artists';
 import './card.styles.scss';
 

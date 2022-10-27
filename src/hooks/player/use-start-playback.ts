@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { supabase } from '../../supabaseClient';
+import { useMutation } from '@tanstack/react-query';
 import { apiSpotify } from '../../utils/axios/axios';
 import { queryKeys } from '../query-keys';
 

@@ -2,8 +2,6 @@ import { useSession } from '../../hooks/auth/use-session';
 import { signOut } from '../../utils/auth';
 import { Avatar } from '../avatar/avatar';
 import { Input } from '../forms/input/input';
-import { Icon } from '../icon/icon';
-import { IconSVG } from '../icon/icon';
 
 export const Header = () => {
   const navigate = useNavigate();

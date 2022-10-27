@@ -2,7 +2,6 @@ import { useVibrant } from '../../../hooks/misc/use-vibrant';
 import { Album } from '../../../types/Album';
 import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
-import { ArtistSimplified } from '../../../types/Artist';
 import { useArtist } from '../../../hooks/content/use-artist';
 
 export interface HeaderProps {

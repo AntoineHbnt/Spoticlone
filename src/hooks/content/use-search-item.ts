@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../supabaseClient';
 import { SearchFromAPI } from '../../types/Search';
 import { apiSpotify } from '../../utils/axios/axios';
 import { queryKeys } from '../query-keys';

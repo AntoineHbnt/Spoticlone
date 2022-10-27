@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../supabaseClient';
 import { Album } from '../../types/Album';
 import { Artist } from '../../types/Artist';
 import { Track } from '../../types/Track';

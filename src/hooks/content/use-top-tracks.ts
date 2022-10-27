@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../supabaseClient';
 import { Paging } from '../../types/Paging';
 import { Track } from '../../types/Track';
 import { apiSpotify } from '../../utils/axios/axios';

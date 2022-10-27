@@ -4,12 +4,10 @@ import { TrackListRow } from '../../../components/tracklist-row/tracklist-row';
 import { Track } from '../../../types/Track';
 import { Icon, IconSVG } from '../../../components/icon/icon';
 import { ComponentShelf } from '../../../components/component-shelf/component-shelf';
-import { redirect, useLoaderData } from 'react-router-dom';
 import { queryKeys } from '../../../hooks/query-keys';
 import { getAlbumById } from '../../../api/album';
-import { QueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
-import { queryClient } from '../../../router';
 
 const albumQuery = (id: string) => ({
   queryKey: queryKeys.album(id),

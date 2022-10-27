@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { PlayBackContext } from '../../context/PlaybackContext';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';

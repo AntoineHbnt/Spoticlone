@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import Vibrant from 'node-vibrant';
 import { queryKeys } from '../query-keys';
 
