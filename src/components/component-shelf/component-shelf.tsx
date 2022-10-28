@@ -9,10 +9,14 @@ export interface ComponentShelfProps {
   title: string;
   link?: string;
   data: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
+  index?: boolean;
+  thumbnail?: boolean;
+  min?: number;
+  max?: number;
 }
 
 export const ComponentShelf = (props: ComponentShelfProps) => {
-  const { title, data, link = '' } = props;
+  const { title, data, link = '', min, max, index = false, thumbnail } = props;
   const element = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(0);
 
@@ -28,6 +32,8 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
       resizeObserver.disconnect();
     };
   }, []);
+
+  console.log(data);
 
   return (
     <section className="flex w-full flex-col">
@@ -47,15 +53,20 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
       </div>
       <div
         ref={element}
-        className={`${data && data.items[0].type !== 'track' ? 'grid gap-6' : ''}`}
+        className={`${data && data.items[0]?.type !== 'track' ? 'grid gap-6' : ''}`}
         style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
       >
         {data &&
-          data.items?.map((elem: any, index: number) =>
+          data.items?.map((elem: any, i: number) =>
             elem.type !== 'track' ? (
               index < columnCount && <Card key={`card-${index}`} data={elem} />
             ) : (
-              <TrackListRow key={`card-${index}`} track={elem} />
+              <TrackListRow
+                key={`card-${index}`}
+                thumbnail={thumbnail}
+                index={index ? i + 1 : 0}
+                track={elem}
+              />
             )
           )}
       </div>
