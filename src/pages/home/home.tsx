@@ -5,8 +5,12 @@ import { useTopArtists } from '../../hooks/content/use-top-artists';
 import { ComponentShelf } from '../../components/component-shelf/component-shelf';
 
 export const Home = () => {
-  const { data: topTracks } = useTopTracks({ limit: 9 });
-  const { data: topArtists } = useTopArtists({ limit: 9 });
+  const { data: topTracks, status: tracksStatus } = useTopTracks({ limit: 9 });
+  const { data: topArtists, status: artistsStatus } = useTopArtists({ limit: 9 });
+
+  if (tracksStatus === 'loading' || artistsStatus === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="p-6">
