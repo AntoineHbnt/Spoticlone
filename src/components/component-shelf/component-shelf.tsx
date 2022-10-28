@@ -4,17 +4,38 @@ import { Paging } from '../../types/Paging';
 import { Track, TrackSimplified } from '../../types/Track';
 import { TrackListRow } from '../tracklist-row/tracklist-row';
 import { Card } from './card';
+import { Tabs } from './tabs';
+
+export interface Tab {
+  title: string;
+  data: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
+}
 
 export interface ComponentShelfProps {
   title: string;
   link?: string;
-  data: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
+  tabs?: Tab[];
+  data?: Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>;
+  index?: boolean;
+  artist?: boolean;
+  thumbnail?: boolean;
+  min?: number;
 }
 
 export const ComponentShelf = (props: ComponentShelfProps) => {
-  const { title, data, link = '' } = props;
+  const { artist = true, title, link = '', min, index = false, thumbnail, tabs } = props;
+  const [isDeploy, setIsDeploy] = useState<boolean>(false);
+  const [columnCount, setColumnCount] = useState<number>(0);
+  const [data, setData] = useState<
+    Paging<Track | Album | Artist | TrackSimplified | AlbumSimplified | Artist>
+  >(tabs ? tabs[0].data : props.data!);
   const element = useRef<HTMLDivElement>(null);
-  const [columnCount, setColumnCount] = useState(0);
+
+  const type = data!.items[0]!.type;
+
+  useCallback(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -31,34 +52,65 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
 
   return (
     <section className="flex w-full flex-col">
-      <div className="mb-4 flex w-full items-center justify-between">
-        {link ? (
-          <NavLink to={link}>
-            <h2 className="text-2xl font-bold text-white hover:underline">{title}</h2>
-          </NavLink>
-        ) : (
-          <h2 className="text-2xl font-bold text-white">{title}</h2>
-        )}
-        {link && (
-          <NavLink to="" className="text-xs font-bold text-gray-400 hover:underline">
-            SEE ALL
-          </NavLink>
-        )}
-      </div>
-      <div
-        ref={element}
-        className={`${data && data.items[0].type !== 'track' ? 'grid gap-6' : ''}`}
-        style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
-      >
-        {data &&
-          data.items?.map((elem: any, index: number) =>
-            elem.type !== 'track' ? (
-              index < columnCount && <Card key={`card-${index}`} data={elem} />
-            ) : (
-              <TrackListRow key={`card-${index}`} track={elem} />
-            )
+      <div className="flex flex-col">
+        <div className="mb-4 flex w-full items-center justify-between">
+          {link ? (
+            <NavLink to={link}>
+              <h2 className="text-2xl font-bold text-white hover:underline">{title}</h2>
+            </NavLink>
+          ) : (
+            <h2 className="text-2xl font-bold text-white">{title}</h2>
           )}
+          {link && (
+            <NavLink to="" className="text-xs font-bold text-gray-400 hover:underline">
+              SEE ALL
+            </NavLink>
+          )}
+        </div>
+        {tabs && (
+          <Tabs
+            tabs={tabs}
+            onChange={(index: number) => setData(tabs[index].data)}
+            className="mb-4"
+          />
+        )}
       </div>
+      {data &&
+        (type !== 'track' ? (
+          <div
+            ref={element}
+            className={`${data && data.items[0]?.type !== 'track' ? 'grid gap-6' : ''}`}
+            style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
+          >
+            {data.items?.map(
+              (elem: any, i: number) => i < columnCount && <Card key={`card-${i}`} data={elem} />
+            )}
+          </div>
+        ) : (
+          <>
+            <div ref={element} className="flex flex-col">
+              {data.items
+                ?.slice(0, isDeploy ? data.items.length : min)
+                .map((elem: any, i: number) => (
+                  <TrackListRow
+                    key={`track-row-${i}`}
+                    thumbnail={thumbnail}
+                    artist={artist}
+                    index={index ? i + 1 : 0}
+                    track={elem}
+                  />
+                ))}
+            </div>
+            {min !== 0 && (
+              <button
+                className="self-start p-4 text-xs font-bold text-[#b3b3b3] hover:underline"
+                onClick={() => setIsDeploy(!isDeploy)}
+              >
+                {isDeploy ? 'SHOW LESS' : 'SEE MORE'}
+              </button>
+            )}
+          </>
+        ))}
     </section>
   );
 };

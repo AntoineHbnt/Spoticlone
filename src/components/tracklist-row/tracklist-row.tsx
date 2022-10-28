@@ -13,14 +13,17 @@ import './tracklist-row.styles.scss';
 export interface TrackListRowProps {
   track: Track;
   index?: number;
+  thumbnail?: boolean;
+  artist?: boolean;
 }
 
 export const TrackListRow = (props: TrackListRowProps) => {
-  const { track, index = 0 } = props;
+  const { artist = true, track, thumbnail = true, index = 0 } = props;
 
   const playback = useContext(PlayBackContext);
   const uri: string = track.album.uri;
   const isPlayingCondition: boolean = playback?.is_playing && playback?.item?.id === track.id;
+  const showIndex: boolean = index !== 0;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
 
@@ -34,33 +37,35 @@ export const TrackListRow = (props: TrackListRowProps) => {
   return (
     <div className={`trackListRow flex w-full items-center justify-between rounded p-2 pr-4`}>
       <div className="flex items-center">
-        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
-          {index === 0 ? (
-            <>
-              <Thumbnail src={track.album.images[0].url} alt={track.album.name} />
-              <button
-                onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
-                className="thumbnail-button absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-[rgb(0,0,0,0.5)] opacity-0"
-              >
-                <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
-              </button>
-            </>
-          ) : (
-            <>
-              <div className="index">
-                {isPlaying ? (
-                  <img src={trackPlayingGif} width="14" height="14" alt="playing song" />
-                ) : (
-                  <span className="text-[#b3b3b3]">{index}</span>
-                )}
-              </div>
+        <div className="relative flex h-10 shrink-0 items-center justify-center">
+          {showIndex && (
+            <div className="relative  flex w-12 items-center justify-center">
+              {isPlaying ? (
+                <img src={trackPlayingGif} width="14" height="14" alt="playing song" />
+              ) : (
+                <span className="index text-[#b3b3b3]">{index}</span>
+              )}
+
               <button
                 onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
                 className="index-button absolute inset-0 z-10 flex h-full w-full items-center justify-center opacity-0"
               >
                 <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
               </button>
-            </>
+            </div>
+          )}
+          {thumbnail && (
+            <div className="thumbnail">
+              <Thumbnail className="w-10" src={track.album.images[0].url} alt={track.album.name} />
+              {!showIndex && (
+                <button
+                  onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
+                  className="thumbnail-button absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-[rgb(0,0,0,0.5)] opacity-0"
+                >
+                  <Icon name={`${isPlaying ? 'pause-fill' : 'play-fill'}  text-xl text-white`} />
+                </button>
+              )}
+            </div>
           )}
         </div>
         <div className="ml-4">
@@ -72,13 +77,14 @@ export const TrackListRow = (props: TrackListRowProps) => {
           <div className="flex items-center">
             {track.explicit && <ExplicitIcon className="mr-2" />}
             <p className="text-sm text-gray-400 line-clamp-1 hover:underline">
-              {track.artists.map((artist) => {
-                return (
-                  <Link key={artist.id} to={`../artist/${artist.id}`}>
-                    {artist.name}
-                  </Link>
-                );
-              })}
+              {artist &&
+                track.artists.map((artist) => {
+                  return (
+                    <Link key={artist.id} to={`../artist/${artist.id}`}>
+                      {artist.name}
+                    </Link>
+                  );
+                })}
             </p>
           </div>
         </div>

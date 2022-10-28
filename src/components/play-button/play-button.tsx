@@ -10,13 +10,12 @@ export interface PlayButtonProps {
   className?: string;
   iconWidth?: number;
   width?: number;
-  data: Track | Album;
   uri: string;
   offset?: number;
 }
 
 export const PlayButton = (props: PlayButtonProps) => {
-  const { className, iconWidth = 24, data, offset = 0, uri, width = 48 } = props;
+  const { className, iconWidth = 24, offset = 0, uri, width = 48 } = props;
   const playback = useContext(PlayBackContext);
   const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === uri;
 

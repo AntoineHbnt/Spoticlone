@@ -38,7 +38,9 @@ export const Album = () => {
               popularity: album!.popularity,
               external_ids: { isrc: '' },
             };
-            return <TrackListRow track={track} index={index + 1} key={track.id} />;
+            return (
+              <TrackListRow track={track} thumbnail={false} index={index + 1} key={track.id} />
+            );
           })}
         </div>
         {artistAlbums && (

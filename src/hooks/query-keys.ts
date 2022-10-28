@@ -7,8 +7,12 @@ export const queryKeys = {
 
   topTracks: (args: TopTracksParams) => ['topTracks'],
   topArtists: (args: TopArtistsParams) => ['topArtists'],
+
   artist: (id: string) => ['artist', id],
   artistAlbums: (id: string) => ['artistAlbums', id],
+  artistSingles: (id: string) => ['artistSingle', id],
+  aristTopTracks: (id: string) => ['artistTopTracks', id],
+
   album: (id: string) => ['album', id],
   getItem: (id: string, type: string) => ['getItem', id, type],
   searchItems: (args: searchItemParams) => ['searchItems'],

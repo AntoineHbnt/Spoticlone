@@ -33,8 +33,7 @@ module.exports = {
         positive: '#1ed760',
       },
       height: {
-        'sm-item-header': '310px',
-        'lg-item-header': '350px',
+        'item-header': '374px',
       },
     },
   },
