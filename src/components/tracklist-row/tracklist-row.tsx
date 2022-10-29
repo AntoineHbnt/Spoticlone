@@ -76,12 +76,13 @@ export const TrackListRow = (props: TrackListRowProps) => {
           </p>
           <div className="flex items-center">
             {track.explicit && <ExplicitIcon className="mr-2" />}
-            <p className="text-sm text-gray-400 line-clamp-1 hover:underline">
+            <p className="text-sm text-gray-400 line-clamp-1">
               {artist &&
-                track.artists.map((artist) => {
+                track.artists.map((artist, index) => {
                   return (
                     <Link key={artist.id} to={`../artist/${artist.id}`}>
-                      {artist.name}
+                      <span className="hover:underline">{artist.name}</span>
+                      {index < track.artists.length - 1 ? ', ' : ''}
                     </Link>
                   );
                 })}
