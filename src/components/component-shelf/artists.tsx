@@ -14,7 +14,7 @@ export const Artists = (props: ArtistProps) => {
           <span key={artist.id}>
             <NavLink
               key={`artist-${artist.id + index}`}
-              to={`artist/${artist.id}`}
+              to={`/artist/${artist.id}`}
               className="hover:underline"
             >
               {artist.name}

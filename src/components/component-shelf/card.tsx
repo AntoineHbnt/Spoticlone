@@ -47,7 +47,7 @@ export const Card = (props: CardProps) => {
         <div className="z-10 h-[2.5rem] text-sm text-gray-400 line-clamp-2">
           {isArtist ? <span>Artist</span> : <Artists artists={data.artists} />}
         </div>
-        <Link to={`/${data.type}/${data.id}`} className="absolute inset-0 h-full w-full" replace />
+        <Link to={`/${data.type}/${data.id}`} className="absolute inset-0 h-full w-full" />
       </div>
     </div>
   );
