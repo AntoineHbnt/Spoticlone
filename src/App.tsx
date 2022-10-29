@@ -17,7 +17,7 @@ const App = () => {
       <div className="flex-co flex h-screen w-screen">
         <div className="flex h-full w-full">
           {session && session && (
-            <div className="w-60 shrink-0">
+            <div className="w-[261px] shrink-0">
               <Sidebar />
             </div>
           )}
