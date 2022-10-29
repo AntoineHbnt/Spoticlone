@@ -21,7 +21,7 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div
-      className="lg:h-h-lg-item-header h-sm-item-header flex w-full shrink-0 items-end gap-6 overflow-hidden p-6 lg:px-8"
+      className="flex h-artist-header w-full shrink-0 items-end gap-6 overflow-hidden p-6 lg:px-8"
       style={{ backgroundColor: color }}
     >
       <Thumbnail src={images[0].url} alt="album cover" className="w-48 shrink-0 xl:w-56" />
