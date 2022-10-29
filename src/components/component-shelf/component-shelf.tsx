@@ -20,10 +20,20 @@ export interface ComponentShelfProps {
   artist?: boolean;
   thumbnail?: boolean;
   min?: number;
+  className?: string;
 }
 
 export const ComponentShelf = (props: ComponentShelfProps) => {
-  const { artist = true, title, link = '', min, index = false, thumbnail, tabs } = props;
+  const {
+    artist = true,
+    title,
+    link = '',
+    min,
+    index = false,
+    thumbnail,
+    tabs,
+    className = '',
+  } = props;
   const [isDeploy, setIsDeploy] = useState<boolean>(false);
   const [columnCount, setColumnCount] = useState<number>(0);
   const [data, setData] = useState<
@@ -51,7 +61,7 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
   }, []);
 
   return (
-    <section className="flex w-full flex-col">
+    <section className={`flex w-full flex-col ${className}`}>
       <div className="flex flex-col">
         <div className="mb-4 flex w-full items-center justify-between">
           {link ? (

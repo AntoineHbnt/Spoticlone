@@ -43,7 +43,7 @@ export const Album = () => {
             );
           })}
         </div>
-        {artistAlbums && (
+        {artistAlbums && artistAlbums.items.length > 1 && (
           <ComponentShelf
             title={`More by ${album!.artists[0].name}`}
             data={{

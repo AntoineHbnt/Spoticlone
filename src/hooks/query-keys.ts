@@ -12,6 +12,7 @@ export const queryKeys = {
   artistAlbums: (id: string) => ['artistAlbums', id],
   artistSingles: (id: string) => ['artistSingle', id],
   aristTopTracks: (id: string) => ['artistTopTracks', id],
+  artistAppearsOn: (id: string) => ['artistAppearsOn', id],
 
   album: (id: string) => ['album', id],
   getItem: (id: string, type: string) => ['getItem', id, type],
