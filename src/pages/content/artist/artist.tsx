@@ -7,6 +7,8 @@ import { Paging } from '../../../types/Paging';
 import { Track } from '../../../types/Track';
 import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
 import { useArtistSingles } from '../../../hooks/content/use-artist-singles';
+import { useArtistAppearsOn } from '../../../hooks/content/use-artist-appears-on';
+import { Album } from '../../../types/Album';
 
 export const Artist = () => {
   const params = useParams<{ id: string }>();
@@ -15,25 +17,27 @@ export const Artist = () => {
   const { data: topTracks, status: tracksStatus } = useArtistTopTracks(params.id!);
   const { data: albums, status: artistAlbumsStatus } = useArtistAlbums(params.id!);
   const { data: singles, status: artistSinglesStatus } = useArtistSingles(params.id!);
+  const { data: appearsOn, status: appearsOnStatus } = useArtistAppearsOn(params.id!);
 
   if (
     artistStatus === 'loading' ||
     tracksStatus === 'loading' ||
     artistAlbumsStatus === 'loading' ||
-    artistSinglesStatus === 'loading'
+    artistSinglesStatus === 'loading' ||
+    appearsOnStatus === 'loading'
   ) {
     return <div>Loading...</div>;
   }
 
-  const contentData: Paging<Track> = {
+  const albumToPaging = (items: Album[] | Track[]): Paging<Album | Track> => ({
     href: '',
-    items: topTracks!,
+    items: items!,
     limit: 10,
     next: '',
     offset: 0,
     previous: null,
     total: topTracks!.length || 0,
-  };
+  });
 
   const tabs: Tab[] = [
     {
@@ -50,8 +54,15 @@ export const Artist = () => {
     <div className="flex w-full flex-col">
       <Header data={artist!} />
       <Content data={artist!} className="px-6 pb-8 lg:px-8">
-        <ComponentShelf title="Popular" index={true} data={contentData} min={5} artist={false} />
-        <ComponentShelf title="Discography" index={true} tabs={tabs} min={5} />
+        <ComponentShelf
+          title="Popular"
+          index={true}
+          data={albumToPaging(topTracks!)}
+          min={5}
+          artist={false}
+        />
+        <ComponentShelf title="Discography" index={true} tabs={tabs} min={5} className="mb-10" />
+        <ComponentShelf title="Appears On" index={true} data={appearsOn!} className="mb-10" />
       </Content>
     </div>
   );
