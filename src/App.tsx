@@ -21,7 +21,7 @@ const App = () => {
           <div className="relative flex-1">
             {session && <Header />}
             <div className="h-full w-full overflow-hidden bg-background-base">
-              <main className="h-full w-full overflow-y-auto">
+              <main className="h-full w-full overflow-y-auto pb-[136px] md:pb-0">
                 <Outlet />
               </main>
             </div>
