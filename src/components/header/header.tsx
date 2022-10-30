@@ -20,7 +20,7 @@ export const Header = () => {
   return (
     <header
       ref={ref}
-      className="absolute inset-0 z-10 flex h-fit w-full items-center justify-between p-4"
+      className="absolute inset-0 z-10 hidden h-fit w-full items-center justify-between p-4 md:flex"
     >
       <div className="flex h-12 gap-4">
         <Input
