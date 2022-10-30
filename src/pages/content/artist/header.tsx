@@ -21,10 +21,14 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div
-      className="flex h-artist-header w-full shrink-0 items-end gap-6 overflow-hidden p-6 lg:px-8"
+      className="flex h-artist-header w-full shrink-0 flex-col gap-6 overflow-hidden px-6 pt-16 pb-6 md:flex-row md:items-end md:py-6 lg:px-8"
       style={{ backgroundColor: color }}
     >
-      <Thumbnail src={images[0].url} alt="album cover" className="w-48 shrink-0 xl:w-56" />
+      <Thumbnail
+        src={images[0].url}
+        alt="album cover"
+        className="w-48 shrink-0 self-center rounded-full md:self-end md:rounded-none xl:w-56"
+      />
       <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
         <h1 className="truncate text-3xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
           {name}

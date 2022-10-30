@@ -53,7 +53,7 @@ export const Artist = () => {
   return (
     <div className="flex w-full flex-col">
       <Header data={artist!} />
-      <Content data={artist!} className="px-6 pb-8 lg:px-8">
+      <Content data={artist!} className="p-6 pb-8 md:px-6 lg:px-8">
         <ComponentShelf
           title="Popular"
           index={true}

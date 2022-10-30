@@ -18,7 +18,7 @@ export const Content = (props: ContentProps) => {
     <div className={`relative w-full`} style={{ backgroundColor: color }}>
       <div className="h-60 w-full bg-gradient-to-b from-[rgba(0,0,0,.6)] to-background-base" />
       <div className="absolute inset-0 flex w-full flex-col">
-        <div className="flex px-6 py-6 lg:px-8">
+        <div className="hidden px-6 py-6 md:flex lg:px-8">
           <PlayButton uri={data.uri} width={56} />
         </div>
         <div className={`max-w-[1955px] ${className}`}>{children}</div>

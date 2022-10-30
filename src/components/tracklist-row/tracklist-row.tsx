@@ -35,7 +35,9 @@ export const TrackListRow = (props: TrackListRowProps) => {
   }, [playback]);
 
   return (
-    <div className={`trackListRow flex w-full items-center justify-between rounded p-2 pr-4`}>
+    <div
+      className={`trackListRow flex w-full items-center justify-between rounded py-2 px-0 md:p-2 md:pr-4`}
+    >
       <div className="flex items-center">
         <div className="relative flex h-10 shrink-0 items-center justify-center">
           {showIndex && (
