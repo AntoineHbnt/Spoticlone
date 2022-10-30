@@ -21,14 +21,18 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div
-      className="relative flex h-item-header w-full shrink-0 items-end gap-6 overflow-hidden bg-cover px-4 pb-6 lg:px-8"
+      className="flex h-artist-header w-full shrink-0 flex-col gap-6 overflow-hidden px-6 pt-16 pb-6 md:flex-row md:items-end md:py-6 lg:px-8"
       style={{ backgroundColor: color }}
     >
-      <div className="absolute top-0  right-0 h-full">
-        <img src={images[0].url} className="h-full object-cover" />
-      </div>
-      <div className="z-10 flex h-full flex-1 flex-col justify-end overflow-hidden">
-        <h1 className="truncate text-8xl font-bold text-white line-clamp-1">{name}</h1>
+      <Thumbnail
+        src={images[0].url}
+        alt="album cover"
+        className="w-48 shrink-0 self-center rounded-full md:self-end md:rounded-none xl:w-56"
+      />
+      <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
+        <h1 className="truncate text-3xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
+          {name}
+        </h1>
         <span className="mt-2 flex h-6 items-center text-sm font-normal text-white">
           {`${numberWithCommas(followers.total)} followers`}
         </span>

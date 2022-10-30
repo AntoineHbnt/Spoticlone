@@ -66,10 +66,10 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
         <div className="mb-4 flex w-full items-center justify-between">
           {link ? (
             <NavLink to={link}>
-              <h2 className="text-2xl font-bold text-white hover:underline">{title}</h2>
+              <h2 className="text:lg font-bold text-white hover:underline md:text-2xl">{title}</h2>
             </NavLink>
           ) : (
-            <h2 className="text-2xl font-bold text-white">{title}</h2>
+            <h2 className="text:lg font-bold text-white md:text-2xl">{title}</h2>
           )}
           {link && (
             <NavLink to="" className="text-xs font-bold text-gray-400 hover:underline">

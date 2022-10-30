@@ -22,9 +22,9 @@ export const Album = () => {
   return (
     <div className="flex w-full flex-col">
       <Header data={album!} />
-      <Content data={album!} className="px-6 pb-8 lg:px-8">
+      <Content data={album!} className="b-8  p-6 md:py-0 lg:px-8">
         <div className="mb-8">
-          <div className="mb-2 flex w-full border-b border-[hsla(0,0%,100%,.1)] p-2 text-xs text-[#b3b3b3]">
+          <div className="mb-2 hidden w-full border-b border-[hsla(0,0%,100%,.1)] p-2 text-xs text-[#b3b3b3] md:flex">
             <span className="mr-4 flex w-10 items-center justify-center">#</span>
             <span>TITLE</span>
             <div className="mr-2 flex flex-1 justify-end">

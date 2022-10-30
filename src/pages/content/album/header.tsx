@@ -41,13 +41,17 @@ export const Header = (props: HeaderProps) => {
 
   return (
     <div
-      className="lg:h-h-lg-item-header flex h-sm-item-header w-full shrink-0 items-end gap-6 overflow-hidden p-6 lg:px-8"
+      className="flex h-album-header w-full shrink-0 flex-col gap-6 overflow-hidden p-6 md:flex-row md:items-end lg:px-8"
       style={{ backgroundColor: color }}
     >
-      <Thumbnail src={image} alt="album cover" className="w-48 shrink-0 xl:w-56" />
+      <Thumbnail
+        src={image}
+        alt="album cover"
+        className="w-48 shrink-0 self-center md:self-end xl:w-56"
+      />
       <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
-        <h2 className="text-xs font-bold text-white">{type.toUpperCase()}</h2>
-        <h1 className="truncate text-3xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
+        <h2 className="hidden text-xs font-bold text-white md:block">{type.toUpperCase()}</h2>
+        <h1 className="truncate  text-2xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
           {name}
         </h1>
         <div className="mt-2 flex h-6 items-center text-sm font-normal text-white">

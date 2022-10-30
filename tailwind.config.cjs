@@ -33,7 +33,8 @@ module.exports = {
         positive: '#1ed760',
       },
       height: {
-        'item-header': '374px',
+        'artist-header': '374px',
+        'album-header': '340px',
       },
     },
   },

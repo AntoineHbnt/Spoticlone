@@ -4,7 +4,7 @@ import { NavItem } from './nav-item';
 
 export const Sidebar = () => {
   return (
-    <div className="h-full w-full bg-black pt-6">
+    <div className="hidden h-full w-[261px] shrink-0 bg-black pt-6 md:block">
       <NavLink to="/">
         <Icon svg={IconSVG.SpotifyBanner} className="mb-4 px-6" height={40} fill="#fff" />
       </NavLink>

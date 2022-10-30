@@ -13,7 +13,7 @@ export const Home = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="w-full p-6">
       <Helmet>
         <title>Spoticlone - Web Player</title>
       </Helmet>
