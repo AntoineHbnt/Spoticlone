@@ -10,6 +10,8 @@ import Pause from './icons/pause';
 import Play from './icons/play';
 import SearchEmpty from './icons/search-empty';
 import SearchFulfilled from './icons/search-fulfilled';
+import SkipBack from './icons/skip-back';
+import SkipForward from './icons/skip-forward';
 import SpotifyIcon from './icons/spotify';
 import SpotifyBanner from './icons/spotify-banner';
 
@@ -30,6 +32,8 @@ export enum IconSVG {
   SearchFulfilled = 'SearchFulfilled',
   SpotifyBanner = 'SpotifyBanner',
   Duration = 'Duration',
+  SkipBack = 'SkipBack',
+  SkipForward = 'SkipForward',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -110,6 +114,12 @@ export const Icon = (props: IconProps) => {
     ),
     [IconSVG.Duration]: (
       <Duration className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.SkipBack]: (
+      <SkipBack className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.SkipForward]: (
+      <SkipForward className={className} width={width} height={height} fill={fill} />
     ),
   };
 

@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { Header } from './components/header/header';
 import { MobileNavigation } from './components/mobile-navigation/mobile-navigation';
+import { Player } from './components/player/player';
 import { Protected } from './components/protected/protected';
 import { Sidebar } from './components/sidebar/sidebar';
 import { useSession } from './hooks/auth/use-session';
@@ -15,8 +16,8 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      <div className="flex-co relative flex h-screen w-screen shrink-0">
-        <div className="flex h-full w-full">
+      <div className="relative flex h-screen w-screen shrink-0 flex-col">
+        <div className="flex h-[calc(100vh_-_90px)] w-full">
           {session && <Sidebar />}
           <div className="relative flex-1">
             {session && <Header />}
@@ -27,6 +28,9 @@ const App = () => {
             </div>
           </div>
         </div>
+        <footer className="absolute bottom-0 left-0 w-full">
+          <Player />
+        </footer>
         <div
           className="absolute bottom-0 flex w-full flex-col md:hidden"
           style={{
