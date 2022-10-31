@@ -14,9 +14,6 @@ export const Home = () => {
 
   return (
     <div className="w-full p-6">
-      <Helmet>
-        <title>Spoticlone - Web Player</title>
-      </Helmet>
       <div className="flex h-full flex-col gap-6">
         <Greetings />
         <ComponentShelf title="Your top tracks" index={false} data={topTracks!} />
