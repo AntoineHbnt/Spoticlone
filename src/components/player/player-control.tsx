@@ -6,6 +6,7 @@ export interface PlayerControlProps {
 
 export const PlayerControl = (props: PlayerControlProps) => {
   const { className } = props;
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const progress = 14;
 
@@ -17,8 +18,15 @@ export const PlayerControl = (props: PlayerControlProps) => {
             <Icon width={16} svg={IconSVG.SkipBack} className="fill-[#b3b3b3] hover:fill-white" />
           </button>
         </div>
-        <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white hover:scale-105">
-          <Icon width={18} svg={IconSVG.Play} />
+        <button
+          onClick={() => {}}
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white hover:scale-105"
+        >
+          {isPlaying ? (
+            <Icon width={18} svg={IconSVG.Pause} />
+          ) : (
+            <Icon width={18} svg={IconSVG.Play} />
+          )}
         </button>
         <div className="flex items-start">
           <button className="flex h-8 w-8 items-center justify-center">
