@@ -9,6 +9,11 @@ export interface PlaybackInfoProps {
 export const PlaybackInfo = (props: PlaybackInfoProps) => {
   const { className } = props;
   const playback = useContext(PlayBackContext);
+
+  if (!playback) {
+    return null;
+  }
+
   const item = {
     name: playback?.item?.name,
     artists: playback?.item?.artists,
