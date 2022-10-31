@@ -1,17 +1,23 @@
-import { isError } from '@tanstack/react-query';
+import { isError, UseQueryResult } from '@tanstack/react-query';
 import { useArtist } from '../../../hooks/content/use-artist';
 import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
 import { useArtistAppearsOn } from '../../../hooks/content/use-artist-appears-on';
 import { useArtistSingles } from '../../../hooks/content/use-artist-singles';
 import { useArtistTopTracks } from '../../../hooks/content/use-artist-top-track';
+import { Album, AlbumSimplified } from '../../../types/Album';
+import { Artist } from '../../../types/Artist';
+import { Paging } from '../../../types/Paging';
+import { Track } from '../../../types/Track';
 
 export function useArtistPageData(id: string) {
-  const artist = useArtist(id!);
+  const artist: UseQueryResult<Artist, Error> = useArtist(id!);
 
-  const artistTopTracks = useArtistTopTracks(artist.data?.id);
-  const artistAlbums = useArtistAlbums(artist.data?.id);
-  const artistSingles = useArtistSingles(artist.data?.id);
-  const artistAppearsOn = useArtistAppearsOn(artist.data?.id);
+  const artistTopTracks: UseQueryResult<Album[], Error> = useArtistTopTracks(artist.data?.id);
+  const artistAlbums: UseQueryResult<Paging<AlbumSimplified>, Error> = useArtistAlbums(
+    artist.data?.id
+  );
+  const artistSingles: UseQueryResult<Paging<Track>, Error> = useArtistSingles(artist.data?.id);
+  const artistAppearsOn: UseQueryResult<Paging<Album>, Error> = useArtistAppearsOn(artist.data?.id);
 
   return {
     artist: artist.data,

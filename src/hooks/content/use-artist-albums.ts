@@ -5,7 +5,7 @@ import { Paging } from '../../types/Paging';
 import { queryKeys } from '../query-keys';
 
 export const useArtistAlbums = (id?: string) => {
-  return useQuery(
+  return useQuery<Paging<AlbumSimplified>, Error>(
     queryKeys.artistAlbums(id),
     (): Promise<Paging<AlbumSimplified>> => getAlbumsByArtistId(id),
     {

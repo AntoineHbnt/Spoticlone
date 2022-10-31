@@ -4,7 +4,11 @@ import { Artist } from '../../types/Artist';
 import { queryKeys } from '../query-keys';
 
 export const useArtist = (id: string) => {
-  return useQuery(queryKeys.artist(id), async (): Promise<Artist> => getArtistById(id), {
-    retry: 0,
-  });
+  return useQuery<Artist, Error>(
+    queryKeys.artist(id),
+    async (): Promise<Artist> => getArtistById(id),
+    {
+      retry: 0,
+    }
+  );
 };
