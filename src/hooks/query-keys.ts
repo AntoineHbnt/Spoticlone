@@ -16,12 +16,15 @@ export const queryKeys = {
 
   album: (id: string) => ['album', id],
   getItem: (id: string, type: string) => ['getItem', id, type],
-  searchItems: (args: searchItemParams) => ['searchItems'],
+  searchItems: (args: searchItemParams) => ['searchItems', args],
   getActiveDevice: () => ['getActiveDevice'],
 
   playbackState: () => ['playbackState'],
   startPlayback: (contextUri: string, offset: number, position_ms: number) => ['startPlayback'],
+  resumePlayback: () => ['resumePlayback'],
   pausePlayback: () => ['pausePlayback'],
+  skipNext: () => ['skipNext'],
+  skipPrevious: () => ['skipPrevious'],
 
   vibrant: (image: string) => ['vibrant', image],
 };

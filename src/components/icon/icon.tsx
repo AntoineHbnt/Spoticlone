@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
+import Device from './icons/device';
 import Duration from './icons/duration';
 import { ExplicitIcon } from './icons/explicit';
 import HomeEmpty from './icons/home-empty';
@@ -34,6 +35,7 @@ export enum IconSVG {
   Duration = 'Duration',
   SkipBack = 'SkipBack',
   SkipForward = 'SkipForward',
+  Device = 'Device',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -121,6 +123,7 @@ export const Icon = (props: IconProps) => {
     [IconSVG.SkipForward]: (
       <SkipForward className={className} width={width} height={height} fill={fill} />
     ),
+    [IconSVG.Device]: <Device className={className} width={width} height={height} fill={fill} />,
   };
 
   if (svg) {

@@ -1,8 +1,10 @@
 import { createContext, ReactNode } from 'react';
+import { PlaybackInfoProps } from '../components/player/playback-info';
 import { useSession } from '../hooks/auth/use-session';
+import { defaultPlaybackState } from '../types/Player';
 import { apiSpotify } from '../utils/axios/axios';
 
-const PlayBackContext = createContext<any>({});
+const PlayBackContext = createContext<any>(defaultPlaybackState);
 
 const PlayBackContextProvider = (props: { children: ReactNode }) => {
   const [playback, setPlayback] = useState<any>(null);

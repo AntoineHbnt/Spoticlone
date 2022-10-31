@@ -1,3 +1,9 @@
+import { PlayBackContext } from '../../context/playback-context';
+import { usePausePlayback } from '../../hooks/player/use-pause-playback';
+import { useResumePlayback } from '../../hooks/player/use-resume-playback';
+import { useSkipNext } from '../../hooks/player/use-skip-next';
+import { useSkipPrevious } from '../../hooks/player/use-skip-previous';
+import { durationParser } from '../../utils/misc/duration';
 import { Icon, IconSVG } from '../icon/icon';
 
 export interface PlayerControlProps {
@@ -6,20 +12,48 @@ export interface PlayerControlProps {
 
 export const PlayerControl = (props: PlayerControlProps) => {
   const { className } = props;
-  const [isPlaying, setIsPlaying] = useState(false);
+  const playback = useContext(PlayBackContext);
+  const isPlayingCondition: boolean = playback?.is_playing;
 
-  const progress = 14;
+  const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
+
+  const { mutateAsync: resumePlayback } = useResumePlayback();
+  const { mutateAsync: pausePlayback } = usePausePlayback();
+  const { mutateAsync: skipNext } = useSkipNext();
+  const { mutateAsync: skipPrevious } = useSkipPrevious();
+
+  useEffect(() => {
+    setIsPlaying(isPlayingCondition);
+  }, [playback]);
+
+  const handlePlay = async () => {
+    if (isPlaying) {
+      await pausePlayback();
+    } else {
+      await resumePlayback();
+    }
+  };
+
+  const handleNext = async () => {
+    await skipNext();
+  };
+
+  const handlePrevious = async () => {
+    await skipPrevious();
+  };
+
+  const progress = (playback?.progress_ms * 100) / playback?.item?.duration_ms;
 
   return (
     <div className={`player-control flex flex-col items-center justify-center ${className}`}>
       <div className="mb-2 flex items-center justify-center gap-4">
         <div className="flex items-end">
-          <button className="flex h-8 w-8 items-center justify-center">
+          <button onClick={handlePrevious} className="flex h-8 w-8 items-center justify-center">
             <Icon width={16} svg={IconSVG.SkipBack} className="fill-[#b3b3b3] hover:fill-white" />
           </button>
         </div>
         <button
-          onClick={() => {}}
+          onClick={handlePlay}
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white hover:scale-105"
         >
           {isPlaying ? (
@@ -29,7 +63,7 @@ export const PlayerControl = (props: PlayerControlProps) => {
           )}
         </button>
         <div className="flex items-start">
-          <button className="flex h-8 w-8 items-center justify-center">
+          <button onClick={handleNext} className="flex h-8 w-8 items-center justify-center">
             <Icon
               width={16}
               svg={IconSVG.SkipForward}
@@ -39,7 +73,9 @@ export const PlayerControl = (props: PlayerControlProps) => {
         </div>
       </div>
       <div className="flex w-full items-center gap-2">
-        <span className="min-w-10 flex text-right text-xs">0:00</span>
+        <span className="min-w-10 flex text-right text-xs">
+          {durationParser(playback?.progress_ms)}
+        </span>
         <div className="flex h-3 w-full items-center">
           <div className="progress-bar-background relative flex h-1 w-full rounded-full bg-[hsla(0,0%,100%,.3)]">
             <div className="relative h-full w-full overflow-hidden rounded-full">
@@ -54,7 +90,7 @@ export const PlayerControl = (props: PlayerControlProps) => {
             />
           </div>
         </div>
-        <span className="min-w-10 text-xs">3:00</span>
+        <span className="min-w-10 text-xs">{durationParser(playback?.item?.duration_ms)}</span>
       </div>
     </div>
   );
