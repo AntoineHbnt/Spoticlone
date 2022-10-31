@@ -4,6 +4,7 @@ import { MobileNavigation } from './components/mobile-navigation/mobile-navigati
 import { Player } from './components/player/player';
 import { Protected } from './components/protected/protected';
 import { Sidebar } from './components/sidebar/sidebar';
+import { SpotifySdkContextProvider } from './context/spotify-playback-sdk-context';
 import { useSession } from './hooks/auth/use-session';
 import { noLayoutNavigation } from './navigation';
 import { Login } from './pages/login';
@@ -14,7 +15,7 @@ const App = () => {
   const { data: session } = useSession();
 
   return (
-    <>
+    <SpotifySdkContextProvider token={session?.provider_token!}>
       <ScrollToTop />
       <div className="relative flex h-screen w-screen shrink-0 flex-col">
         <div className="flex h-[calc(100vh_-_90px)] w-full">
@@ -42,7 +43,7 @@ const App = () => {
           <MobileNavigation />
         </div>
       </div>
-    </>
+    </SpotifySdkContextProvider>
   );
 };
 

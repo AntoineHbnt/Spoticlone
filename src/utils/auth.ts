@@ -7,7 +7,7 @@ export const signInWithSpotify = async () => {
     provider: 'spotify',
     options: {
       scopes:
-        'user-read-email user-read-private user-top-read user-modify-playback-state user-read-playback-state',
+        'user-read-email user-read-private streaming user-top-read user-modify-playback-state user-read-playback-state',
     },
   });
 
