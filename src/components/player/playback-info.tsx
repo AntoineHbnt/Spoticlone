@@ -15,8 +15,6 @@ export const PlaybackInfo = (props: PlaybackInfoProps) => {
     image: playback?.item?.album?.images[0].url!,
   };
 
-  console.log(playback);
-
   return (
     <div className={`flex h-full items-center ${className}`}>
       <Thumbnail src={playback ? item.image : ''} alt="" className="h-14 w-14" />
