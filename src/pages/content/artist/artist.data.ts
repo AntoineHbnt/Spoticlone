@@ -19,6 +19,12 @@ export function useArtistPageData(id: string) {
     artistAlbums: artistAlbums.data,
     artistSingles: artistSingles.data,
     artistAppearsOn: artistAppearsOn.data,
+    error:
+      artist.error ||
+      artistTopTracks.error ||
+      artistAlbums.error ||
+      artistSingles.error ||
+      artistAppearsOn.error,
     isLoading:
       artist.isLoading ||
       artistTopTracks.isLoading ||

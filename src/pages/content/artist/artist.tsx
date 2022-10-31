@@ -11,7 +11,7 @@ export const Artist = () => {
   const data = useArtistPageData(params.id!);
 
   if (data.isError) {
-    throw new Error('Artist not found');
+    throw new Error(data.error!.message);
   }
 
   if (data.isLoading) {
