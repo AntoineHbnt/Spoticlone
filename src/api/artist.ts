@@ -13,17 +13,17 @@ export const getArtistById = async (id: string): Promise<Artist> => {
   }
 };
 
-export const getArtistTopTracks = async (id: string): Promise<Album[]> => {
+export const getArtistTopTracks = async (id?: string): Promise<Album[]> => {
   const response = await apiSpotify.get(`/artists/${id}/top-tracks?market=FR`);
   return response.data.tracks;
 };
 
-export const getArtistSingles = async (id: string): Promise<Paging<Track>> => {
+export const getArtistSingles = async (id?: string): Promise<Paging<Track>> => {
   const response = await apiSpotify.get(`/artists/${id}/albums?include_groups=single`);
   return response.data;
 };
 
-export const getArtistAppearson = async (id: string): Promise<Paging<Album>> => {
+export const getArtistAppearson = async (id?: string): Promise<Paging<Album>> => {
   const response = await apiSpotify.get(`/artists/${id}/albums?include_groups=appears_on`);
   return response.data;
 };
