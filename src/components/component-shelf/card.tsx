@@ -1,4 +1,4 @@
-import { PlayBackContext } from '../../context/PlaybackContext';
+import { PlayBackContext } from '../../context/playback-context';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';
 import { PlayButton } from '../play-button/play-button';

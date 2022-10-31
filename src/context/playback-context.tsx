@@ -1,8 +1,9 @@
 import { createContext, ReactNode } from 'react';
 import { useSession } from '../hooks/auth/use-session';
+import { defaultPlaybackState } from '../types/Player';
 import { apiSpotify } from '../utils/axios/axios';
 
-const PlayBackContext = createContext<any>({});
+const PlayBackContext = createContext<any>(defaultPlaybackState);
 
 const PlayBackContextProvider = (props: { children: ReactNode }) => {
   const [playback, setPlayback] = useState<any>(null);
@@ -11,11 +12,7 @@ const PlayBackContextProvider = (props: { children: ReactNode }) => {
   useEffect(() => {
     if (session) {
       const interval = setInterval(async () => {
-        const response = await apiSpotify.get('/me/player', {
-          headers: {
-            Authorization: `Bearer ${session.provider_token}`,
-          },
-        });
+        const response = await apiSpotify.get('/me/player');
         setPlayback(response.data);
       }, 1000);
       return () => clearInterval(interval);

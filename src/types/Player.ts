@@ -1,6 +1,7 @@
 import { CurrentlyPlaying } from './CurrentlyPlaying';
+import { defaultArtist } from './Defaults';
 import { Device } from './Device';
-/* 
+
 export interface Player {
   devices: {
     activeDevice: Device;
@@ -39,24 +40,28 @@ const defaultAlbum: Spotify.Album = {
   images: [],
 };
 
-const defaultArtist: Spotify.Artist[] = [
-  {
-    uri: '',
-    name: '',
-  },
-];
-
 const defaultTrack: Spotify.Track = {
-  uri: '',
-  uid: '',
-  id: null,
-  type: 'track',
-  media_type: 'audio',
-  name: '',
-  is_playable: true,
   album: defaultAlbum,
-  artists: defaultArtist,
+  artists: [
+    {
+      name: '',
+      uri: '',
+      url: '',
+    },
+  ],
   duration_ms: 0,
+  id: null,
+  is_playable: true,
+  name: 'string',
+  uid: '',
+  uri: '',
+  media_type: 'audio',
+  type: 'track',
+  track_type: 'audio',
+  linked_from: {
+    uri: null,
+    id: null,
+  },
 };
 
 const defaultTrackWindow: Spotify.PlaybackTrackWindow = {
@@ -87,7 +92,7 @@ const defaultPlaybackRestrictions = {
 
 export const defaultPlaybackState: Spotify.PlaybackState = {
   context: {
-    metadata: '',
+    metadata: null,
     uri: null,
   },
   loading: false,
@@ -104,4 +109,3 @@ export const defaultPlaybackState: Spotify.PlaybackState = {
   restrictions: defaultPlaybackRestrictions,
   track_window: defaultTrackWindow,
 };
- */

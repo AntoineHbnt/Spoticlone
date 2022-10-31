@@ -1,4 +1,4 @@
-import { PlayBackContext } from '../../context/PlaybackContext';
+import { PlayBackContext } from '../../context/playback-context';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';
 import { Album } from '../../types/Album';
@@ -28,9 +28,18 @@ export const PlayButton = (props: PlayButtonProps) => {
     setIsPlaying(isPlayingCondition);
   }, [playback]);
 
+  const handlePlay = async () => {
+    if (isPlaying) {
+      await pausePlayback();
+    } else {
+      await startPlayback();
+    }
+    setIsPlaying(isPlayingCondition);
+  };
+
   return (
     <button
-      onClick={() => (isPlaying ? pausePlayback() : startPlayback())}
+      onClick={handlePlay}
       style={{ width: `${width}px` }}
       className={`flex aspect-square shrink-0 cursor-default items-center justify-center rounded-full bg-spotify-green drop-shadow-[0_8px_8px_rgba(0,0,0,0.3)] ${className}`}
     >

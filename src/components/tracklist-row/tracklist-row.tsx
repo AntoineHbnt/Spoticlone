@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { PlayBackContext } from '../../context/PlaybackContext';
+import { PlayBackContext } from '../../context/playback-context';
 import { usePausePlayback } from '../../hooks/player/use-pause-playback';
 import { useStartPlayback } from '../../hooks/player/use-start-playback';
 import { Track } from '../../types/Track';
