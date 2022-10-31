@@ -1,7 +1,17 @@
 import { Album } from '../types/Album';
+import { Artist } from '../types/Artist';
 import { Paging } from '../types/Paging';
 import { Track } from '../types/Track';
 import { apiSpotify } from '../utils/axios/axios';
+
+export const getArtistById = async (id: string): Promise<Artist> => {
+  try {
+    const response = await apiSpotify.get(`/artists/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Artist not found');
+  }
+};
 
 export const getArtistTopTracks = async (id: string): Promise<Album[]> => {
   const response = await apiSpotify.get(`/artists/${id}/top-tracks?market=FR`);

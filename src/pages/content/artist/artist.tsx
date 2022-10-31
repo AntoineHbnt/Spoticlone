@@ -13,18 +13,22 @@ import { Album } from '../../../types/Album';
 export const Artist = () => {
   const params = useParams<{ id: string }>();
 
-  const { data: artist, status: artistStatus } = useArtist(params.id!);
-  const { data: topTracks, status: tracksStatus } = useArtistTopTracks(params.id!);
-  const { data: albums, status: artistAlbumsStatus } = useArtistAlbums(params.id!);
-  const { data: singles, status: artistSinglesStatus } = useArtistSingles(params.id!);
-  const { data: appearsOn, status: appearsOnStatus } = useArtistAppearsOn(params.id!);
+  const { data: artist, isLoading: artistStatus, error: artistError } = useArtist(params.id!);
+  const { data: topTracks, isLoading: tracksStatus } = useArtistTopTracks(params.id!);
+  const { data: albums, isLoading: artistAlbumsStatus } = useArtistAlbums(params.id!);
+  const { data: singles, isLoading: artistSinglesStatus } = useArtistSingles(params.id!);
+  const { data: appearsOn, isLoading: appearsOnStatus } = useArtistAppearsOn(params.id!);
+
+  if (artistError) {
+    throw new Error('Artist not found');
+  }
 
   if (
-    artistStatus === 'loading' ||
-    tracksStatus === 'loading' ||
-    artistAlbumsStatus === 'loading' ||
-    artistSinglesStatus === 'loading' ||
-    appearsOnStatus === 'loading'
+    artistStatus ||
+    tracksStatus ||
+    artistAlbumsStatus ||
+    artistSinglesStatus ||
+    appearsOnStatus
   ) {
     return <div>Loading...</div>;
   }
