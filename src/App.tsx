@@ -17,7 +17,7 @@ const App = () => {
       {playback && (
         <Helmet>
           <title>
-            {playback!.item.name} • {playback!.item.artists[0].name}
+            {playback.item!.name} • {(playback.item as SpotifyApi.TrackObjectFull)!.artists[0].name}
           </title>
         </Helmet>
       )}

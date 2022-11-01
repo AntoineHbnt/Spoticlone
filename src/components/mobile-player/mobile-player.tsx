@@ -5,7 +5,11 @@ import { PlayerInfo } from './player-info';
 
 export const MobilePlayer = () => {
   const playback = useContext(PlayBackContext);
-  const { data: color } = useVibrant(playback?.item?.album?.images[0].url);
+  const { data: color } = useVibrant(
+    (playback?.item as SpotifyApi.TrackObjectFull)?.album.images[0].url
+  );
+
+  if (!playback) return null;
 
   return (
     <div

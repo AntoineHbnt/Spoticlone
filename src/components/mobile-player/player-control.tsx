@@ -5,15 +5,14 @@ import { Icon, IconSVG } from '../icon/icon';
 
 export const PlayerControl = () => {
   const playback = useContext(PlayBackContext);
-  const isPlayingCondition: boolean = playback?.is_playing;
 
-  const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
+  const [isPlaying, setIsPlaying] = useState<boolean>(playback!.is_playing);
 
   const { mutateAsync: resumePlayback } = useResumePlayback();
   const { mutateAsync: pausePlayback } = usePausePlayback();
 
   useEffect(() => {
-    setIsPlaying(isPlayingCondition);
+    setIsPlaying(playback!.is_playing);
   }, [playback]);
 
   const handlePlay = async () => {

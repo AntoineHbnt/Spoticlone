@@ -25,6 +25,8 @@ export const queryKeys = {
   pausePlayback: () => ['pausePlayback'],
   skipNext: () => ['skipNext'],
   skipPrevious: () => ['skipPrevious'],
+  toggleShuffle: (state: boolean) => ['toggleShuffle', state],
+  toggleRepeat: (state: 'off' | 'track' | 'context') => ['toggleRepeat', state],
 
   vibrant: (image: string) => ['vibrant', image],
 };

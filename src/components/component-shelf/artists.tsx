@@ -1,7 +1,7 @@
-import { Artist } from '../../types/Artist';
+import { Artist, ArtistSimplified } from '../../types/Artist';
 
 export interface ArtistProps {
-  artists: Artist[];
+  artists: Artist[] | ArtistSimplified[];
 }
 
 export const Artists = (props: ArtistProps) => {
@@ -10,7 +10,7 @@ export const Artists = (props: ArtistProps) => {
   return (
     <>
       {artists &&
-        artists.map((artist: Artist, index: number) => {
+        artists.map((artist: Artist | ArtistSimplified, index: number) => {
           return (
             <span key={artist.id}>
               <NavLink

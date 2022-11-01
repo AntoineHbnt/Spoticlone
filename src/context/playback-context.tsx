@@ -3,7 +3,7 @@ import { useSession } from '../hooks/auth/use-session';
 import { defaultPlaybackState } from '../types/Player';
 import { apiSpotify } from '../utils/axios/axios';
 
-const PlayBackContext = createContext<any>(null);
+const PlayBackContext = createContext<SpotifyApi.CurrentPlaybackResponse | null>(null);
 
 const PlayBackContextProvider = (props: { children: ReactNode }) => {
   const [playback, setPlayback] = useState<any>(null);

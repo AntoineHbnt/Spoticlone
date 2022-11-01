@@ -16,12 +16,11 @@ export const Card = (props: CardProps) => {
   const isArtist = data.type === 'artist';
   const images = data.images || data.album?.images;
   const src = images[0]?.url || '';
-  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === data.uri;
+  const isPlayingCondition: boolean = playback?.is_playing
+    ? playback?.context?.uri === data.uri
+    : false;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
-
-  const { mutateAsync: startPlayback } = useStartPlayback(data.uri, 0, 0);
-  const { mutateAsync: pausePlayback } = usePausePlayback();
 
   useEffect(() => {
     setIsPlaying(isPlayingCondition);

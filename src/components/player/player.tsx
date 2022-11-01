@@ -1,6 +1,6 @@
 import { PlaybackDevice } from './playback-device';
 import { PlaybackInfo } from './playback-info';
-import { PlayerControl } from './player-control';
+import { PlayerControl } from './player-control/player-control';
 import './player.styles.scss';
 
 export const Player = () => {
