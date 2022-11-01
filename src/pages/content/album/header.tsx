@@ -1,22 +1,16 @@
-import { useVibrant } from '../../../hooks/misc/use-vibrant';
-import { Album } from '../../../types/Album';
 import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
-import { useArtist } from '../../../hooks/content/use-artist';
+import { useAlbumData } from './album.data';
 
-export interface HeaderProps {
-  data: Album;
-}
+export const Header = () => {
+  const params = useParams<{ id: string }>();
+  const { album, artist, color } = useAlbumData(params.id!);
 
-export const Header = (props: HeaderProps) => {
-  const { type, name, images, artists, release_date, tracks } = props.data;
-  const { data: artist } = useArtist(artists[0].id);
-  const { data: color } = useVibrant(images[0].url);
-  const image = images[1].url;
+  const image = album!.images[1].url;
 
   const renderArtists = () => {
     return (
-      artist && (
+      album && (
         <>
           <Thumbnail
             src={artist!.images[0].url}
@@ -50,14 +44,16 @@ export const Header = (props: HeaderProps) => {
         className="w-48 shrink-0 self-center md:self-end xl:w-56"
       />
       <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
-        <h2 className="hidden text-xs font-bold text-white md:block">{type.toUpperCase()}</h2>
+        <h2 className="hidden text-xs font-bold text-white md:block">
+          {album?.album_type.toUpperCase()}
+        </h2>
         <h1 className="truncate  text-2xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
-          {name}
+          {album!.name}
         </h1>
         <div className="mt-2 flex h-6 items-center text-sm font-normal text-white">
           <>{renderArtists()}</>
-          {renderInfo(release_date.split('-')[0])}
-          {renderInfo(albumDurationParser(tracks.items))}
+          {renderInfo(album!.release_date.split('-')[0])}
+          {renderInfo(albumDurationParser(album!.tracks.items))}
         </div>
       </div>
     </div>

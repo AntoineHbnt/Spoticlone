@@ -4,7 +4,7 @@ import { Paging } from '../types/Paging';
 import { Track } from '../types/Track';
 import { apiSpotify } from '../utils/axios/axios';
 
-export const getArtistById = async (id: string): Promise<Artist> => {
+export const getArtistById = async (id?: string): Promise<Artist> => {
   try {
     const response = await apiSpotify.get(`/artists/${id}`);
     return response.data;

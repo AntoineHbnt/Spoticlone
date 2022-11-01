@@ -1,21 +1,12 @@
-import { useVibrant } from '../../../hooks/misc/use-vibrant';
-import { Album } from '../../../types/Album';
-import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
-import { useArtist } from '../../../hooks/content/use-artist';
-import { Artist } from '../../../types/Artist';
-import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
 import { numberWithCommas } from '../../../utils/misc/number-parse';
+import { useArtistPageData } from './artist.data';
 
-export interface HeaderProps {
-  data: Artist;
-}
+export const Header = () => {
+  const params = useParams<{ id: string }>();
+  const { artist, color, isLoading } = useArtistPageData(params.id!);
 
-export const Header = (props: HeaderProps) => {
-  const { id, name, images, followers } = props.data!;
-  const { data: color } = useVibrant(images[0].url);
-
-  if (status === 'loading') {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -25,16 +16,16 @@ export const Header = (props: HeaderProps) => {
       style={{ backgroundColor: color }}
     >
       <Thumbnail
-        src={images[0].url}
+        src={artist!.images[0].url}
         alt="album cover"
         className="w-48 shrink-0 self-center rounded-full md:self-end md:rounded-none xl:w-56"
       />
       <div className="flex h-full flex-1 flex-col justify-end overflow-hidden">
         <h1 className="truncate text-3xl font-bold text-white line-clamp-1 md:text-5xl lg:text-7xl xl:text-8xl">
-          {name}
+          {artist!.name}
         </h1>
         <span className="mt-2 flex h-6 items-center text-sm font-normal text-white">
-          {`${numberWithCommas(followers.total)} followers`}
+          {`${numberWithCommas(artist!.followers.total)} followers`}
         </span>
       </div>
     </div>
