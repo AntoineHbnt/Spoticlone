@@ -29,3 +29,11 @@ export const skipNext = async () => {
 export const skipPrevious = async () => {
   await apiSpotify.post('/me/player/previous');
 };
+
+export const toggleShuffle = async (state: boolean) => {
+  await apiSpotify.put(`/me/player/shuffle?state=${state}`);
+};
+
+export const toggleRepeat = async (state: 'off' | 'track' | 'context') => {
+  await apiSpotify.put(`/me/player/repeat?state=${state}`);
+};

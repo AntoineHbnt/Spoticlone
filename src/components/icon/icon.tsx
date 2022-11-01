@@ -9,8 +9,11 @@ import LibraryEmpty from './icons/library-empty';
 import LibraryFulfilled from './icons/library-fulfilled';
 import Pause from './icons/pause';
 import Play from './icons/play';
+import RepeatContext from './icons/repeat-context';
+import RepeatTrack from './icons/repeat-track';
 import SearchEmpty from './icons/search-empty';
 import SearchFulfilled from './icons/search-fulfilled';
+import Shuffle from './icons/shuffle';
 import SkipBack from './icons/skip-back';
 import SkipForward from './icons/skip-forward';
 import SpotifyIcon from './icons/spotify';
@@ -36,6 +39,9 @@ export enum IconSVG {
   SkipBack = 'SkipBack',
   SkipForward = 'SkipForward',
   Device = 'Device',
+  Shuffle = 'Shuffle',
+  RepeatContext = 'RepeatContext',
+  RepeatTrack = 'RepeatTrack',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -124,6 +130,13 @@ export const Icon = (props: IconProps) => {
       <SkipForward className={className} width={width} height={height} fill={fill} />
     ),
     [IconSVG.Device]: <Device className={className} width={width} height={height} fill={fill} />,
+    [IconSVG.Shuffle]: <Shuffle className={className} width={width} height={height} fill={fill} />,
+    [IconSVG.RepeatContext]: (
+      <RepeatContext className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.RepeatTrack]: (
+      <RepeatTrack className={className} width={width} height={height} fill={fill} />
+    ),
   };
 
   if (svg) {
