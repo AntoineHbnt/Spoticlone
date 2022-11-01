@@ -1,6 +1,11 @@
 .player-control {
-  .progress-bar-background:hover {
-    .progress-bar {
+  .progress-bar-background-1 {
+    transform: translateX(-100%);
+    background-color: white;
+  }
+
+  &:hover {
+    .progress-bar-background-1 {
       background-color: #1db954;
     }
     .progress-pointer {

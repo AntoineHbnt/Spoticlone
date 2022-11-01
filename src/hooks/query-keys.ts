@@ -27,6 +27,7 @@ export const queryKeys = {
   skipPrevious: () => ['skipPrevious'],
   toggleShuffle: (state: boolean) => ['toggleShuffle', state],
   toggleRepeat: (state: 'off' | 'track' | 'context') => ['toggleRepeat', state],
+  seekPostion: (positionMs: number) => ['seekPostion', positionMs],
 
   vibrant: (image: string) => ['vibrant', image],
 };
