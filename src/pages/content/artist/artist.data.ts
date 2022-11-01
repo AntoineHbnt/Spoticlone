@@ -1,9 +1,10 @@
-import { isError, UseQueryResult } from '@tanstack/react-query';
-import { useArtist } from '../../../hooks/content/use-artist';
+import { UseQueryResult } from '@tanstack/react-query';
+import { useArtist } from '../../../hooks/content/artist/use-artist';
 import { useArtistAlbums } from '../../../hooks/content/artist/use-artist-albums';
-import { useArtistAppearsOn } from '../../../hooks/content/use-artist-appears-on';
-import { useArtistSingles } from '../../../hooks/content/use-artist-singles';
-import { useArtistTopTracks } from '../../../hooks/content/use-artist-top-track';
+import { useArtistAppearsOn } from '../../../hooks/content/artist/use-artist-appears-on';
+import { useArtistSingles } from '../../../hooks/content/artist/use-artist-singles';
+import { useArtistTopTracks } from '../../../hooks/content/artist/use-artist-top-track';
+
 import { Album, AlbumSimplified } from '../../../types/Album';
 import { Artist } from '../../../types/Artist';
 import { Paging } from '../../../types/Paging';

@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet';
 import { Greetings } from './greetings';
-import { useTopTracks } from '../../hooks/content/use-top-tracks';
 import { useTopArtists } from '../../hooks/content/user/use-top-artists';
 import { ComponentShelf } from '../../components/component-shelf/component-shelf';
+import { useTopTracks } from '../../hooks/content/user/use-top-tracks';
+import { useHomeData } from './home.data';
 
 export const Home = () => {
-  const { data: topTracks, status: tracksStatus } = useTopTracks({ limit: 9 });
-  const { data: topArtists, status: artistsStatus } = useTopArtists({ limit: 9 });
+  const { topTracks, topArtists, isLoading } = useHomeData(9);
 
-  if (tracksStatus === 'loading' || artistsStatus === 'loading') {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 

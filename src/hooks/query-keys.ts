@@ -5,7 +5,7 @@ export const albumKeys = {
 };
 
 export const artistKeys = {
-  artist: (id: string) => ['artist', id],
+  artist: (id?: string) => ['artist', id],
   artistAlbums: (id?: string) => ['artistAlbums', id],
   artistSingles: (id?: string) => ['artistSingle', id],
   aristTopTracks: (id?: string) => ['artistTopTracks', id],
@@ -38,5 +38,5 @@ export const queryKeys = {
   session: () => ['session'],
   searchItems: (args: searchItemParams) => ['searchItems', args],
   getActiveDevice: () => ['getActiveDevice'],
-  vibrant: (image: string) => ['vibrant', image],
+  vibrant: (image?: string) => ['vibrant', image],
 };

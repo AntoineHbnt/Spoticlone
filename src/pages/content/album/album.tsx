@@ -18,7 +18,7 @@ export const Album = () => {
 
   return (
     <div className="flex w-full flex-col">
-      <Header data={album!} />
+      <Header albumId={album!.id!} />
       <Content data={album!} className="b-8  p-6 md:py-0 lg:px-8">
         <div className="mb-8">
           <div className="mb-2 hidden w-full border-b border-[hsla(0,0%,100%,.1)] p-2 text-xs text-[#b3b3b3] md:flex">
