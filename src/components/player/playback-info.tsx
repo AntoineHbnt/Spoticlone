@@ -9,13 +9,16 @@ export interface PlaybackInfoProps {
 export const PlaybackInfo = (props: PlaybackInfoProps) => {
   const { className } = props;
   const playback = useContext(PlayBackContext);
+
+  if (!playback) {
+    return null;
+  }
+
   const item = {
     name: playback?.item?.name,
     artists: playback?.item?.artists,
     image: playback?.item?.album?.images[0].url!,
   };
-
-  console.log(playback);
 
   return (
     <div className={`flex h-full items-center ${className}`}>

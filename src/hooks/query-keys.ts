@@ -9,10 +9,10 @@ export const queryKeys = {
   topArtists: (args: TopArtistsParams) => ['topArtists'],
 
   artist: (id: string) => ['artist', id],
-  artistAlbums: (id: string) => ['artistAlbums', id],
-  artistSingles: (id: string) => ['artistSingle', id],
-  aristTopTracks: (id: string) => ['artistTopTracks', id],
-  artistAppearsOn: (id: string) => ['artistAppearsOn', id],
+  artistAlbums: (id?: string) => ['artistAlbums', id],
+  artistSingles: (id?: string) => ['artistSingle', id],
+  aristTopTracks: (id?: string) => ['artistTopTracks', id],
+  artistAppearsOn: (id?: string) => ['artistAppearsOn', id],
 
   album: (id: string) => ['album', id],
   getItem: (id: string, type: string) => ['getItem', id, type],
