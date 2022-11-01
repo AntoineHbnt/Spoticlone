@@ -11,8 +11,8 @@ export const PlaybackInfo = (props: PlaybackInfoProps) => {
   const playback = useContext(PlayBackContext);
   const item = {
     name: playback?.item?.name,
-    artists: playback?.item?.artists,
-    image: playback?.item?.album?.images[0].url!,
+    artists: (playback?.item as SpotifyApi.TrackObjectFull).artists,
+    image: (playback?.item as SpotifyApi.TrackObjectFull).album?.images[0].url!,
   };
 
   console.log(playback);

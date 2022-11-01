@@ -22,7 +22,9 @@ export const TrackListRow = (props: TrackListRowProps) => {
 
   const playback = useContext(PlayBackContext);
   const uri: string = track.album.uri;
-  const isPlayingCondition: boolean = playback?.is_playing && playback?.item?.id === track.id;
+  const isPlayingCondition: boolean = playback?.is_playing
+    ? playback?.item?.id === track.id
+    : false;
   const showIndex: boolean = index !== 0;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);

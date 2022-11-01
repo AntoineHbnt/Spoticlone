@@ -17,7 +17,7 @@ export interface PlayButtonProps {
 export const PlayButton = (props: PlayButtonProps) => {
   const { className, iconWidth = 24, offset = 0, uri, width = 48 } = props;
   const playback = useContext(PlayBackContext);
-  const isPlayingCondition: boolean = playback?.is_playing && playback?.context?.uri === uri;
+  const isPlayingCondition: boolean = playback?.is_playing ? playback?.context?.uri === uri : false;
 
   const [isPlaying, setIsPlaying] = useState<boolean>(isPlayingCondition);
 
