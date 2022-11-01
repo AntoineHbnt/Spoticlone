@@ -37,3 +37,7 @@ export const toggleShuffle = async (state: boolean) => {
 export const toggleRepeat = async (state: 'off' | 'track' | 'context') => {
   await apiSpotify.put(`/me/player/repeat?state=${state}`);
 };
+
+export const seekPostion = async (positionMs: number) => {
+  await apiSpotify.put(`/me/player/seek?position_ms=${positionMs}`);
+};
