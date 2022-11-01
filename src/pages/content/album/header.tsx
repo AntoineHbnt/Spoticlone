@@ -2,8 +2,9 @@ import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
 import { useAlbumData } from './album.data';
 
-export const Header = (props: { albumId: string }) => {
-  const { album, artist, color } = useAlbumData(props.albumId);
+export const Header = () => {
+  const params = useParams<{ id: string }>();
+  const { album, artist, color } = useAlbumData(params.id!);
 
   const image = album!.images[1].url;
 
