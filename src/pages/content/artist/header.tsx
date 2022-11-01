@@ -4,7 +4,7 @@ import { albumDurationParser } from '../../../utils/misc/duration';
 import { Thumbnail } from '../../../components/thumbnail/thumbnail';
 import { useArtist } from '../../../hooks/content/use-artist';
 import { Artist } from '../../../types/Artist';
-import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
+import { useArtistAlbums } from '../../../hooks/content/artist/use-artist-albums';
 import { numberWithCommas } from '../../../utils/misc/number-parse';
 
 export interface HeaderProps {

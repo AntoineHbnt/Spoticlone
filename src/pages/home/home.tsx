@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
 import { Greetings } from './greetings';
 import { useTopTracks } from '../../hooks/content/use-top-tracks';
-import { useTopArtists } from '../../hooks/content/use-top-artists';
+import { useTopArtists } from '../../hooks/content/user/use-top-artists';
 import { ComponentShelf } from '../../components/component-shelf/component-shelf';
 
 export const Home = () => {

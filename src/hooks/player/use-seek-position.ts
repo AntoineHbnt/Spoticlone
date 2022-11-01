@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { seekPostion } from '../../api/player';
-import { queryKeys } from '../query-keys';
+import { playerKeys } from '../query-keys';
 
 export const useSeekPosition = (positionMs: number) => {
   const { mutateAsync, isLoading } = useMutation(
-    queryKeys.seekPostion(positionMs),
+    playerKeys.seekPostion(positionMs),
     () => seekPostion(positionMs),
     {
       onSuccess: () => {

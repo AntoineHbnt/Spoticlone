@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { resumePlayback } from '../../api/player';
-import { queryKeys } from '../query-keys';
+import { playerKeys } from '../query-keys';
 
 export const useResumePlayback = () => {
   const { mutateAsync, isLoading } = useMutation(
-    queryKeys.resumePlayback(),
+    playerKeys.resumePlayback(),
     () => resumePlayback(),
     {
       onSuccess: () => {

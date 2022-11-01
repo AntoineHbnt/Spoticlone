@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
-import { useAlbum } from '../../../hooks/content/use-album';
-import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
+import { useAlbum } from '../../../hooks/content/album/use-album';
+import { useArtistAlbums } from '../../../hooks/content/artist/use-artist-albums';
 import { Album, AlbumSimplified } from '../../../types/Album';
 import { Paging } from '../../../types/Paging';
 
