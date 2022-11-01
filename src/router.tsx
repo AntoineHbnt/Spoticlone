@@ -8,6 +8,7 @@ import { Protected } from './components/protected/protected';
 import App from './App';
 import { Login } from './pages/login';
 import { QueryClient } from '@tanstack/react-query';
+import { NotFound } from './pages/not-found';
 
 export const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         path: '/',

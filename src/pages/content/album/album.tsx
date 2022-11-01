@@ -4,20 +4,17 @@ import { TrackListRow } from '../../../components/tracklist-row/tracklist-row';
 import { Track } from '../../../types/Track';
 import { Icon, IconSVG } from '../../../components/icon/icon';
 import { ComponentShelf } from '../../../components/component-shelf/component-shelf';
-import { queryKeys } from '../../../hooks/query-keys';
-import { getAlbumById } from '../../../api/album';
-import { useQuery } from '@tanstack/react-query';
-import { useArtistAlbums } from '../../../hooks/content/use-artist-albums';
-import { queryClient } from '../../../router';
-import { useAlbum } from '../../../hooks/content/use-album';
+import { useAlbumData } from './album.data';
 
 export const Album = () => {
   const params = useParams<{ id: string }>();
+  const { album, artistAlbums, isLoading, isError, error } = useAlbumData(params.id!);
 
-  const { data: album, status } = useAlbum(params.id!);
-  const { data: artistAlbums } = useArtistAlbums(album ? album!.artists[0].id! : '');
+  if (isError) {
+    throw new Error(error!.message);
+  }
 
-  if (status === 'loading') return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="flex w-full flex-col">

@@ -1,26 +1,31 @@
-import { RouterProvider } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { Header } from './components/header/header';
 import { MobileNavigation } from './components/mobile-navigation/mobile-navigation';
 import { MobilePlayer } from './components/mobile-player/mobile-player';
 import { Player } from './components/player/player';
-import { Protected } from './components/protected/protected';
 import { Sidebar } from './components/sidebar/sidebar';
+import { PlayBackContext } from './context/playback-context';
 import { useSession } from './hooks/auth/use-session';
-import { noLayoutNavigation } from './navigation';
-import { Login } from './pages/login';
-import { router } from './router';
 import ScrollToTop from './utils/misc/scroll-to-top';
 
 const App = () => {
   const { data: session } = useSession();
+  const playback = useContext(PlayBackContext);
 
   return (
     <>
+      {playback && (
+        <Helmet>
+          <title>
+            {playback!.item.name} • {playback!.item.artists[0].name}
+          </title>
+        </Helmet>
+      )}
       <ScrollToTop />
       <div className="relative flex h-screen w-screen shrink-0 flex-col">
         <div className="flex h-full w-full md:h-[calc(100vh_-_90px)]">
           {session && <Sidebar />}
-          <div className="relative flex-1">
+          <div className="right-block relative flex-1">
             {session && <Header />}
             <div className="h-full w-full overflow-hidden bg-background-base">
               <main className="h-full w-full overflow-y-auto pb-[136px] md:pb-0">

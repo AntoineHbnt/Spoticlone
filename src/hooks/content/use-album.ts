@@ -4,7 +4,10 @@ import { Album } from '../../types/Album';
 import { queryKeys } from '../query-keys';
 
 export const useAlbum = (id: string) => {
-  return useQuery(queryKeys.album(id), (): Promise<Album> => getAlbumById(id), {
-    enabled: !!id,
+  return useQuery<Album, Error>(queryKeys.album(id), async (): Promise<Album> => getAlbumById(id), {
+    retry: 0,
+    onError: (error) => {
+      throw new Error(error.message);
+    },
   });
 };
