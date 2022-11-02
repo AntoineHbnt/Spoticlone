@@ -9,6 +9,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const { data: session, status } = useSession();
   const element = useRef<HTMLElement>(null);
+  const path = useLocation().pathname;
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -50,12 +51,14 @@ export const Header = () => {
             onClick={() => navigate(1)}
           />
         </div>
-        <Input
-          className="h-full bg-white"
-          icon="search-line"
-          onChange={handleSearch}
-          placeholder="What do you want to listen to?"
-        />
+        {path.includes('search') && (
+          <Input
+            className="h-full bg-white"
+            icon="search-line"
+            onChange={handleSearch}
+            placeholder="What do you want to listen to?"
+          />
+        )}
       </div>
       <Avatar />
     </header>
