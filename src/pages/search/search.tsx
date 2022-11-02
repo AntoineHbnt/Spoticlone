@@ -3,21 +3,11 @@ import { useSearchItem } from '../../hooks/content/use-search-item';
 
 export const Search = () => {
   const { query } = useParams<{ query: string }>();
-  const {
-    refetch,
-    data: searchResult,
-    status,
-  } = useSearchItem({
-    query: query!,
+  const { data: searchResult, status } = useSearchItem({
+    query: query ? query : '',
     limit: 10,
     type: ['artist,track,album'],
   });
-
-  useEffect(() => {
-    setTimeout(() => {
-      refetch();
-    }, 500);
-  }, [query]);
 
   if (status === 'loading') {
     return <div>Loading...</div>;
@@ -26,7 +16,7 @@ export const Search = () => {
   const { artists, tracks, albums } = searchResult!;
   const noResult = !artists?.items.length && !tracks?.items.length && !albums?.items.length;
 
-  return searchResult && !noResult ? (
+  return searchResult && !noResult && query ? (
     <div className="flex flex-col gap-8 p-6">
       {tracks.items?.length && <ComponentShelf title="Song" data={tracks} />}
       {albums.items?.length && <ComponentShelf title="Album" data={albums} />}

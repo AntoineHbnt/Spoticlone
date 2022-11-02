@@ -40,7 +40,7 @@ export const Header = () => {
   return (
     <header
       ref={element}
-      className={`bg-background-bases sticky inset-0 z-10 hidden h-fit w-full items-center justify-between p-4 md:flex`}
+      className={`sticky inset-0 z-10 hidden h-fit w-full items-center justify-between bg-background-base/80 px-6 py-2 backdrop-blur md:flex`}
     >
       <div className="flex h-12 items-center gap-4">
         <div className="flex gap-4">
