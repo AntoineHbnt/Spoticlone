@@ -2,11 +2,13 @@ import { useSession } from '../../hooks/auth/use-session';
 import { signOut } from '../../utils/auth';
 import { Avatar } from '../avatar/avatar';
 import { Input } from '../forms/input/input';
+import { Icon, IconSVG } from '../icon/icon';
+import { Tooltip } from '../tooltip/Tooltip';
 
 export const Header = () => {
   const navigate = useNavigate();
   const { data: session, status } = useSession();
-  const ref = useRef<HTMLElement>(null);
+  const element = useRef<HTMLElement>(null);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -17,24 +19,45 @@ export const Header = () => {
     return <div>Loading...</div>;
   }
 
+  interface ButtonProps {
+    icon: IconSVG;
+    tooltip: string;
+    onClick: () => void;
+  }
+
+  const Button = (props: ButtonProps) => (
+    <Tooltip content={props.tooltip}>
+      <button
+        onClick={props.onClick}
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(0,0,0,.7)]"
+      >
+        <Icon width={20} svg={props.icon} fill="#fff" />
+      </button>
+    </Tooltip>
+  );
+
   return (
     <header
-      ref={ref}
-      className="absolute inset-0 z-10 hidden h-fit w-full items-center justify-between p-4 md:flex"
+      ref={element}
+      className={`bg-background-bases sticky inset-0 z-10 hidden h-fit w-full items-center justify-between p-4 md:flex`}
     >
-      <div className="flex h-12 gap-4">
+      <div className="flex h-12 items-center gap-4">
+        <div className="flex gap-4">
+          <Button icon={IconSVG.NavigateBack} tooltip="Go back" onClick={() => navigate(-1)} />
+          <Button
+            icon={IconSVG.NavigateForwards}
+            tooltip="Go forwards"
+            onClick={() => navigate(1)}
+          />
+        </div>
         <Input
+          className="h-full bg-white"
           icon="search-line"
           onChange={handleSearch}
           placeholder="What do you want to listen to?"
         />
       </div>
-      <button
-        onClick={signOut}
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-background-base hover:bg-[#282828]"
-      >
-        <Avatar src={session!.user!.user_metadata.avatar_url} size={28} alt="avatar" />
-      </button>
+      <Avatar />
     </header>
   );
 };
