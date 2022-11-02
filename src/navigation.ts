@@ -10,7 +10,7 @@ export const mainNavigation = [
   {
     icon: IconSVG.SearchEmpty,
     label: 'Search',
-    path: '/search',
+    path: '/search/s',
     activeIcon: IconSVG.SearchFulfilled,
   },
   {

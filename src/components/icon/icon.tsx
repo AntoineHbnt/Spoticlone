@@ -7,6 +7,8 @@ import HomeFulfilled from './icons/home-fulfilled';
 import ItemWithoutSrc from './icons/item-without-src';
 import LibraryEmpty from './icons/library-empty';
 import LibraryFulfilled from './icons/library-fulfilled';
+import NavigateBack from './icons/navigate-back';
+import NavigateForwards from './icons/navigate-forwards';
 import Pause from './icons/pause';
 import Play from './icons/play';
 import RepeatContext from './icons/repeat-context';
@@ -42,6 +44,8 @@ export enum IconSVG {
   Shuffle = 'Shuffle',
   RepeatContext = 'RepeatContext',
   RepeatTrack = 'RepeatTrack',
+  NavigateBack = 'NavigateBack',
+  NavigateForwards = 'NavigateForwards',
 }
 
 export interface IconSVGProps extends ComponentPropsWithoutRef<'svg'> {
@@ -136,6 +140,12 @@ export const Icon = (props: IconProps) => {
     ),
     [IconSVG.RepeatTrack]: (
       <RepeatTrack className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.NavigateBack]: (
+      <NavigateBack className={className} width={width} height={height} fill={fill} />
+    ),
+    [IconSVG.NavigateForwards]: (
+      <NavigateForwards className={className} width={width} height={height} fill={fill} />
     ),
   };
 

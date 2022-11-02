@@ -6,20 +6,21 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   icon?: string;
+  iconColor?: string;
 }
 
 export const Input = (props: InputProps) => {
-  const { label, error, icon, className, ...rest } = props;
+  const { label, error, icon, className, iconColor = '#000', ...rest } = props;
 
   return (
-    <label className="height-[48px] w-[440px]">
+    <label className="h-[40px] w-[360px]">
       <div
-        className={`ri-xl flex h-full items-center gap-4 overflow-hidden rounded-full bg-background-base px-3 text-white`}
+        className={`ri-xl flex h-full items-center gap-4 overflow-hidden rounded-full bg-background-base px-3 py-1.5 text-black ${className}`}
       >
-        <Icon name="search-line" />
+        <Icon name="search-line" className={`text-black`} />
         <input
           type="text"
-          className="flex-1 bg-transparent font-sans text-sm focus:outline-0"
+          className="flex-1 bg-transparent font-sans text-xs focus:outline-0"
           {...rest}
         />
       </div>

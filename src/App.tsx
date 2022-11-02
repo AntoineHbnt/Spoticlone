@@ -25,13 +25,11 @@ const App = () => {
       <div className="relative flex h-screen w-screen shrink-0 flex-col">
         <div className="flex h-full w-full md:h-[calc(100vh_-_90px)]">
           {session && <Sidebar />}
-          <div className="right-block relative flex-1">
+          <div className="right-block relative flex flex-1 flex-col overflow-y-auto bg-background-base">
             {session && <Header />}
-            <div className="h-full w-full overflow-hidden bg-background-base">
-              <main className="h-full w-full overflow-y-auto pb-[136px] md:pb-0">
-                <Outlet />
-              </main>
-            </div>
+            <main className="absolute top-[60px] w-full  pb-[136px] md:pb-0">
+              <Outlet />
+            </main>
           </div>
         </div>
         <footer className="absolute bottom-0 left-0 hidden w-full md:block">

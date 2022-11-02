@@ -111,7 +111,7 @@ export const ComponentShelf = (props: ComponentShelfProps) => {
                   />
                 ))}
             </div>
-            {min !== 0 && (
+            {min && (
               <button
                 className="self-start p-4 text-xs font-bold text-[#b3b3b3] hover:underline"
                 onClick={() => setIsDeploy(!isDeploy)}
